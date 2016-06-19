@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Notatki</title>
+    <link>http://practical-coder.github.io/notatki/post/</link>
+    <description>Recent content in Posts on Notatki</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pl-pl</language>
+    <lastBuildDate>Sun, 19 Jun 2016 13:17:21 +0200</lastBuildDate>
+    <atom:link href="http://practical-coder.github.io/notatki/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go: przykład JSON api za pomocą Iris oraz GORM</title>
+      <link>http://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</link>
+      <pubDate>Sun, 19 Jun 2016 13:17:21 +0200</pubDate>
+      
+      <guid>http://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</guid>
+      <description>
+
+&lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
+
+&lt;p&gt;Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
+PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
+do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
+wykorzystany zostanie framework Iris.&lt;/p&gt;
+
+&lt;p&gt;Struktura plików aplikacji:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;notes (master) $ tree
+.
+├── db
+│   └── pg
+│       └── pg.go
+├── main.go
+├── note
+│   ├── controller.go
+│   └── model.go
+└── tag
+    ├── controller.go
+    └── model.go
+
+4 directories, 6 files
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Plik &lt;strong&gt;&lt;code&gt;main.go&lt;/code&gt;&lt;/strong&gt; stanowi punkt wejścia aplikacji. Definiowane są tam
+mapowania ścieżek url na odpowiednie metody. Uruchamiany jest tam też
+serwer iris z możliwością zmiany domyślnego portu flagą z lini poleceń.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;flag&amp;quot;
+    &amp;quot;notes/note&amp;quot;
+    &amp;quot;notes/tag&amp;quot;
+
+    &amp;quot;github.com/kataras/iris&amp;quot;
+)
+
+var port string
+
+func main() {
+    flag.Parse()
+    flag.StringVar(&amp;amp;port, &amp;quot;p&amp;quot;, &amp;quot;8181&amp;quot;, &amp;quot;Listen on TCP port: -p &amp;lt;PORT_NUMBER&amp;gt;&amp;quot;)
+
+    // Notes
+    iris.Get(&amp;quot;/notes&amp;quot;, note.List)
+    iris.Post(&amp;quot;/notes&amp;quot;, note.Create)
+    iris.Get(&amp;quot;/notes/:id&amp;quot;, note.Show)
+    iris.Delete(&amp;quot;/notes/:id&amp;quot;, note.Destroy)
+
+    // Tags
+    iris.Get(&amp;quot;/tags&amp;quot;, tag.List)
+    iris.Get(&amp;quot;/tags/:id&amp;quot;, tag.Show)
+
+    iris.Listen(&amp;quot;:&amp;quot; + port)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;połączenie-z-bazą-danych&#34;&gt;Połączenie z bazą danych&lt;/h2&gt;
+
+&lt;p&gt;W pliku &lt;strong&gt;&lt;code&gt;db/pg/pg.go&lt;/code&gt;&lt;/strong&gt; otwieramy połączenie z bazą używając jako ORM
+bibilioteki &lt;strong&gt;GORM&lt;/strong&gt; oraz sterownika bazy PostgreSQL, &lt;strong&gt;pq&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package pg
+
+import (
+    &amp;quot;log&amp;quot;
+
+    &amp;quot;github.com/jinzhu/gorm&amp;quot;
+    _ &amp;quot;github.com/lib/pq&amp;quot;
+)
+
+var DB *gorm.DB
+
+func init() {
+    var err error
+
+    DB, err = gorm.Open(&amp;quot;postgres&amp;quot;, &amp;quot;user=&amp;lt;User&amp;gt; host=localhost password=&amp;lt;Pass&amp;gt; dbname=&amp;lt;Db&amp;gt; sslmode=disable&amp;quot;)
+    if err != nil {
+        log.Fatal(err)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;paczka-note&#34;&gt;Paczka note&lt;/h2&gt;
+
+&lt;p&gt;Katalog &lt;strong&gt;/note&lt;/strong&gt; zawiera cały kod odpowiedzialny za Notatkę. W tak prostym
+przykładzie kod modelu oraz kontrolera należą do tej samej paczki &lt;strong&gt;&lt;code&gt;package note&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;model&#34;&gt;Model&lt;/h3&gt;
+
+&lt;p&gt;Kod modelu znajduje się w pliku &lt;strong&gt;/note/model.go&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package note
+
+import (
+    &amp;quot;notes/db/pg&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+type Note struct {
+    ID        uint      `json:&amp;quot;id&amp;quot;`
+    CreatedAt time.Time `json:&amp;quot;created_at&amp;quot;`
+    UpdatedAt time.Time `json:&amp;quot;updated_at&amp;quot;`
+    Title     string    `json:&amp;quot;title&amp;quot;`
+    Text      string    `json:&amp;quot;text&amp;quot;`
+}
+
+type Notes struct {
+    Notes []Note `json:&amp;quot;notes&amp;quot;`
+}
+
+func find(id int) Note {
+    note := Note{}
+    pg.DB.Where(&amp;quot;id = ?&amp;quot;, id).First(&amp;amp;note)
+    return note
+}
+
+func destroy(id int) {
+    pg.DB.Delete(Note{}, &amp;quot;id = ?&amp;quot;, id)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;kontroler&#34;&gt;Kontroler&lt;/h3&gt;
+
+&lt;p&gt;Plik &lt;strong&gt;/note/controller.go&lt;/strong&gt; zawiera kod kontrolera:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package note
+
+import (
+    &amp;quot;log&amp;quot;
+    &amp;quot;notes/db/pg&amp;quot;
+
+    &amp;quot;github.com/kataras/iris&amp;quot;
+)
+
+func List(c *iris.Context) {
+    notes := Notes{}
+    pg.DB.Find(&amp;amp;notes.Notes)
+    c.JSON(iris.StatusOK, notes)
+}
+
+func Show(c *iris.Context) {
+    id, err := c.ParamInt(&amp;quot;id&amp;quot;)
+    if err != nil {
+        log.Println(err)
+    }
+
+    note := find(id)
+    if note.ID == 0 {
+        c.JSON(iris.StatusNotFound, map[string]string{&amp;quot;error&amp;quot;: &amp;quot;Note not found.&amp;quot;})
+    } else {
+        c.JSON(iris.StatusOK, note)
+    }
+}
+
+func Create(c *iris.Context) {
+    var note Note
+
+    err := c.ReadJSON(&amp;amp;note)
+    if err != nil {
+        log.Println(err)
+    }
+
+    pg.DB.Create(&amp;amp;note)
+    c.JSON(iris.StatusOK, note)
+}
+
+func Destroy(c *iris.Context) {
+    id, err := c.ParamInt(&amp;quot;id&amp;quot;)
+    if err != nil {
+        log.Println(err)
+    }
+    destroy(id)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;paczka-tag&#34;&gt;Paczka tag&lt;/h2&gt;
+
+&lt;p&gt;W katalogu &lt;strong&gt;/tag&lt;/strong&gt; znajduje się kod dotyczący Tagów.&lt;/p&gt;
+
+&lt;h3 id=&#34;model-1&#34;&gt;Model&lt;/h3&gt;
+
+&lt;p&gt;Zawartość pliku &lt;strong&gt;/tag/model.go&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package tag
+
+import (
+    &amp;quot;notes/db/pg&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+type Tag struct {
+    ID        uint      `json:&amp;quot;id&amp;quot;`
+    CreatedAt time.Time `json:&amp;quot;created_at&amp;quot;`
+    UpdatedAt time.Time `json:&amp;quot;updated_at&amp;quot;`
+    Name      string    `json:&amp;quot;name&amp;quot;`
+}
+
+type Tags struct {
+    Tags []Tag `json:&amp;quot;tags&amp;quot;`
+}
+
+func find(id int) Tag {
+    tag := Tag{}
+    pg.DB.Where(&amp;quot;id = ?&amp;quot;, id).First(&amp;amp;tag)
+    return tag
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;kontroler-1&#34;&gt;Kontroler&lt;/h3&gt;
+
+&lt;p&gt;Plik &lt;strong&gt;/tag/controller.go&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package tag
+
+import (
+    &amp;quot;log&amp;quot;
+    &amp;quot;notes/db/pg&amp;quot;
+
+    &amp;quot;github.com/kataras/iris&amp;quot;
+)
+
+func List(c *iris.Context) {
+    tags := Tags{}
+    pg.DB.Find(&amp;amp;tags.Tags)
+    c.JSON(iris.StatusOK, tags)
+}
+
+func Show(c *iris.Context) {
+    id, err := c.ParamInt(&amp;quot;id&amp;quot;)
+    if err != nil {
+        log.Println(err)
+    }
+
+    tag := find(id)
+    if tag.ID == 0 {
+        c.JSON(iris.StatusNotFound, map[string]string{&amp;quot;error&amp;quot;: &amp;quot;Tag not found.&amp;quot;})
+    } else {
+        c.JSON(iris.StatusOK, tag)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;podsumowanie&#34;&gt;Podsumowanie&lt;/h2&gt;
+
+&lt;p&gt;Jak widać Iris sporo upraszcza, standardowe handlery z paczki net/http
+przyjmują dwa parametry, request oraz response. W Iris to jest tylko jeden
+wskaźnik na kontekst. Odczytanie parametru w url, konwersja do typu
+całkowitego, odczytanie formatu json z body zapytania POST, zwrócenie jsona
+z odpowiednim nagłówkiem statusu i wiele wiele innych standardowych operacji
+staje się dużo łatwiejszych.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Historia poleceń: czas wykonania komendy</title>
+      <link>http://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/</link>
+      <pubDate>Sun, 19 Jun 2016 10:08:34 +0200</pubDate>
+      
+      <guid>http://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/</guid>
+      <description>&lt;p&gt;Domyślnie pierwsza kolumna wpisu historii powłoki zawiera tylko id wykonanej komendy. Nie ma jednak informacji o czasie jej wykonania.
+Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową &lt;strong&gt;HISTTIMEFORMAT&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HISTTIMEFORMAT=&#39;%H:%M:%S %d-%m-%Y  &#39;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>OS X: usługi nasłuchujące</title>
+      <link>http://practical-coder.github.io/notatki/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</link>
+      <pubDate>Sun, 19 Jun 2016 09:47:25 +0200</pubDate>
+      
+      <guid>http://practical-coder.github.io/notatki/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</guid>
+      <description>&lt;p&gt;W OS X polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo lsof -i tcp -nP -stcp:listen
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;COMMAND    PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+nginx       57   root    8u  IPv4 0x44ebc4a200674587      0t0  TCP *:8080 (LISTEN)
+nginx       57   root    9u  IPv4 0x44ebc4a2006721a7      0t0  TCP *:80 (LISTEN)
+nxserver.   78     nx   13u  IPv4 0x44ebc4a201602397      0t0  TCP 127.0.0.1:23998 (LISTEN)
+ss_conn_s   79   root    7u  IPv4 0x44ebc4a200673c8f      0t0  TCP 127.0.0.1:50911 (LISTEN)
+nginx      222 nobody    8u  IPv4 0x44ebc4a200674587      0t0  TCP *:8080 (LISTEN)
+nginx      222 nobody    9u  IPv4 0x44ebc4a2006721a7      0t0  TCP *:80 (LISTEN)
+nxd        266     nx    3u  IPv4 0x44ebc4a200673397      0t0  TCP *:4000 (LISTEN)
+nxd        266     nx    4u  IPv6 0x44ebc4a2015fbaaf      0t0  TCP *:4000 (LISTEN)
+mongod     427    jac    6u  IPv4 0x44ebc4a202ae5587      0t0  TCP 127.0.0.1:27017 (LISTEN)
+java       431    jac  115u  IPv6 0x44ebc4a2015fafef      0t0  TCP 127.0.0.1:9300 (LISTEN)
+java       431    jac  144u  IPv6 0x44ebc4a20a9f600f      0t0  TCP 127.0.0.1:9200 (LISTEN)
+redis-ser  433    jac    4u  IPv4 0x44ebc4a202a868af      0t0  TCP 127.0.0.1:6379 (LISTEN)
+postgres   443    jac    5u  IPv6 0x44ebc4a2015fc56f      0t0  TCP [::1]:5432 (LISTEN)
+postgres   443    jac    6u  IPv6 0x44ebc4a2015fc00f      0t0  TCP [fe80:1::1]:5432 (LISTEN)
+postgres   443    jac    7u  IPv4 0x44ebc4a202a87a9f      0t0  TCP 127.0.0.1:5432 (LISTEN)
+SpotifyWe  444    jac    6u  IPv4 0x44ebc4a202ae5e7f      0t0  TCP 127.0.0.1:4370 (LISTEN)
+SpotifyWe  444    jac    7u  IPv4 0x44ebc4a202a88c8f      0t0  TCP 127.0.0.1:4380 (LISTEN)
+nxserver.  827     nx    4u  IPv4 0x44ebc4a20a407397      0t0  TCP 127.0.0.1:20000 (LISTEN)
+nxnode.bi  868    jac   15u  IPv4 0x44ebc4a20a4f6e7f      0t0  TCP 127.0.0.1:12002 (LISTEN)
+nxnode.bi  868    jac   17u  IPv6 0x44ebc4a2015fb54f      0t0  TCP [::1]:7002 (LISTEN)
+nxnode.bi  868    jac   18u  IPv4 0x44ebc4a20a50b397      0t0  TCP 127.0.0.1:7002 (LISTEN)
+nxclient   897    jac    6u  IPv4 0x44ebc4a20a50ce7f      0t0  TCP 127.0.0.1:25002 (LISTEN)
+Python    1562    jac   11u  IPv4 0x44ebc4a20a4f4a9f      0t0  TCP 127.0.0.1:50120 (LISTEN)
+ruby      1879    jac   10u  IPv4 0x44ebc4a203053c8f      0t0  TCP 127.0.0.1:50274 (LISTEN)
+ruby      1881    jac   10u  IPv4 0x44ebc4a203052a9f      0t0  TCP 127.0.0.1:50276 (LISTEN)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Informacje do przejrzenia są mniej więcej odpowiednikiem starego i wypróbowanego&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;netstat -lntp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:5666            0.0.0.0:*               LISTEN      846/nrpe
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      17504/sshd
+tcp        0      0 0.0.0.0:65432           0.0.0.0:*               LISTEN      9137/memcached
+tcp6       0      0 :::22                   :::*                    LISTEN      17504/sshd
+tcp6       0      0 :::65432                :::*                    LISTEN      9137/memcached
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Vim: przywrócenie autouzupełniania</title>
+      <link>http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</link>
+      <pubDate>Sun, 19 Jun 2016 09:33:54 +0200</pubDate>
+      
+      <guid>http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</guid>
+      <description>&lt;p&gt;Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
+przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;~ $ cd  .vim/bundle/YouCompleteMe/
+YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Go: odbiorca metody, przykłady</title>
+      <link>http://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</link>
+      <pubDate>Sun, 19 Jun 2016 09:03:31 +0200</pubDate>
+      
+      <guid>http://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
+      <description>&lt;p&gt;W Go po słowie kluczowym &lt;strong&gt;&lt;code&gt;func&lt;/code&gt;&lt;/strong&gt;, a przed nazwą metody, możemy określić jej odbiorcę.
+Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość.
+W metodach &lt;strong&gt;&lt;code&gt;Len()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;Cap()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;IsEmpty()&lt;/code&gt;&lt;/strong&gt; oraz &lt;strong&gt;&lt;code&gt;Top()&lt;/code&gt;&lt;/strong&gt; odbiorcą jest &lt;strong&gt;&lt;code&gt;Stack&lt;/code&gt;&lt;/strong&gt;. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu.
+Natomiast jeżeli metoda modyfikuje obiekt, wtedy odbiorca określany jest wskaźnikiem do obiektu.
+Tak się dzieje w metodach &lt;strong&gt;&lt;code&gt;Push()&lt;/code&gt;&lt;/strong&gt; i &lt;strong&gt;&lt;code&gt;Pop()&lt;/code&gt;&lt;/strong&gt;. Tam odbiorcą jest &lt;strong&gt;&lt;code&gt;*Stack&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package stack
+
+import &amp;quot;errors&amp;quot;
+
+type Stack []interface{}
+
+func (stack Stack) Len() int {
+    return len(stack)
+}
+
+func (stack Stack) Cap() int {
+    return cap(stack)
+}
+
+func (stack Stack) IsEmpty() bool {
+    return len(stack) == 0
+}
+
+func (stack Stack) Top() (interface{}, error) {
+    if stack.IsEmpty() {
+        return nil, errors.New(&amp;quot;Cannot Top() an empty stack&amp;quot;)
+    } else {
+        return stack[len(stack)-1], nil
+    }
+}
+
+func (stack *Stack) Push(x interface{}) {
+    *stack = append(*stack, x)
+}
+
+func (stack *Stack) Pop() (interface{}, error) {
+    tempStack := *stack
+    if tempStack.IsEmpty() {
+        return nil, errors.New(&amp;quot;Cannot Pop() an empty stack&amp;quot;)
+    } else {
+        item := tempStack[len(tempStack)-1]
+        *stack = tempStack[:len(tempStack)-1]
+        return item, nil
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing notes with curl</title>
+      <link>http://practical-coder.github.io/notatki/post/testing-notes-with-curl/</link>
+      <pubDate>Sun, 19 Jun 2016 08:11:03 +0200</pubDate>
+      
+      <guid>http://practical-coder.github.io/notatki/post/testing-notes-with-curl/</guid>
+      <description>&lt;p&gt;To test creating notes with api, use sample &lt;code&gt;note.json&lt;/code&gt; in main
+directory and post it with curl:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cat note.json | c -XPOST http://localhost:8181/notes -d @-
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

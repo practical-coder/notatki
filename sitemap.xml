@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://practical-coder.github.io/notatki/</loc>
+    <lastmod>2016-06-19T13:17:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</loc>
+    <lastmod>2016-06-19T13:17:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/</loc>
+    <lastmod>2016-06-19T10:08:34+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://practical-coder.github.io/notatki/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</loc>
+    <lastmod>2016-06-19T09:47:25+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</loc>
+    <lastmod>2016-06-19T09:33:54+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</loc>
+    <lastmod>2016-06-19T09:03:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://practical-coder.github.io/notatki/post/testing-notes-with-curl/</loc>
+    <lastmod>2016-06-19T08:11:03+02:00</lastmod>
+  </url>
+  
+</urlset>

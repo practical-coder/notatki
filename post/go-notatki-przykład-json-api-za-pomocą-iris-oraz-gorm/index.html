@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.16" />
+
+  <title>Go: przykład JSON api za pomocą Iris oraz GORM &middot; Notatki</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://practical-coder.github.io/notatki/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://practical-coder.github.io/notatki/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="http://practical-coder.github.io/notatki/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/agate.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="http://practical-coder.github.io/notatki/img/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/categories/"><i class='fa fa-sitemap fa-fw'></i>Categories</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/tags/"><i class='fa fa-tags fa-fw'></i>Tags</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Go: przykład JSON api za pomocą Iris oraz GORM</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>19 Jun 2016, 13:17</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/go">go</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/golang">golang</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/iris">iris</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/gorm">gorm</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/pl">pl</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  
+
+<h2 id="organizacja-kodu">Organizacja kodu</h2>
+
+<p>Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
+PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
+do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
+wykorzystany zostanie framework Iris.</p>
+
+<p>Struktura plików aplikacji:</p>
+
+<pre><code class="language-bash">notes (master) $ tree
+.
+├── db
+│   └── pg
+│       └── pg.go
+├── main.go
+├── note
+│   ├── controller.go
+│   └── model.go
+└── tag
+    ├── controller.go
+    └── model.go
+
+4 directories, 6 files
+</code></pre>
+
+<p>Plik <strong><code>main.go</code></strong> stanowi punkt wejścia aplikacji. Definiowane są tam
+mapowania ścieżek url na odpowiednie metody. Uruchamiany jest tam też
+serwer iris z możliwością zmiany domyślnego portu flagą z lini poleceń.</p>
+
+<pre><code>package main
+
+import (
+    &quot;flag&quot;
+    &quot;notes/note&quot;
+    &quot;notes/tag&quot;
+
+    &quot;github.com/kataras/iris&quot;
+)
+
+var port string
+
+func main() {
+    flag.Parse()
+    flag.StringVar(&amp;port, &quot;p&quot;, &quot;8181&quot;, &quot;Listen on TCP port: -p &lt;PORT_NUMBER&gt;&quot;)
+
+    // Notes
+    iris.Get(&quot;/notes&quot;, note.List)
+    iris.Post(&quot;/notes&quot;, note.Create)
+    iris.Get(&quot;/notes/:id&quot;, note.Show)
+    iris.Delete(&quot;/notes/:id&quot;, note.Destroy)
+
+    // Tags
+    iris.Get(&quot;/tags&quot;, tag.List)
+    iris.Get(&quot;/tags/:id&quot;, tag.Show)
+
+    iris.Listen(&quot;:&quot; + port)
+}
+</code></pre>
+
+<h2 id="połączenie-z-bazą-danych">Połączenie z bazą danych</h2>
+
+<p>W pliku <strong><code>db/pg/pg.go</code></strong> otwieramy połączenie z bazą używając jako ORM
+bibilioteki <strong>GORM</strong> oraz sterownika bazy PostgreSQL, <strong>pq</strong> :</p>
+
+<pre><code>package pg
+
+import (
+    &quot;log&quot;
+
+    &quot;github.com/jinzhu/gorm&quot;
+    _ &quot;github.com/lib/pq&quot;
+)
+
+var DB *gorm.DB
+
+func init() {
+    var err error
+
+    DB, err = gorm.Open(&quot;postgres&quot;, &quot;user=&lt;User&gt; host=localhost password=&lt;Pass&gt; dbname=&lt;Db&gt; sslmode=disable&quot;)
+    if err != nil {
+        log.Fatal(err)
+    }
+}
+</code></pre>
+
+<h2 id="paczka-note">Paczka note</h2>
+
+<p>Katalog <strong>/note</strong> zawiera cały kod odpowiedzialny za Notatkę. W tak prostym
+przykładzie kod modelu oraz kontrolera należą do tej samej paczki <strong><code>package note</code></strong>.</p>
+
+<h3 id="model">Model</h3>
+
+<p>Kod modelu znajduje się w pliku <strong>/note/model.go</strong> :</p>
+
+<pre><code>package note
+
+import (
+    &quot;notes/db/pg&quot;
+    &quot;time&quot;
+)
+
+type Note struct {
+    ID        uint      `json:&quot;id&quot;`
+    CreatedAt time.Time `json:&quot;created_at&quot;`
+    UpdatedAt time.Time `json:&quot;updated_at&quot;`
+    Title     string    `json:&quot;title&quot;`
+    Text      string    `json:&quot;text&quot;`
+}
+
+type Notes struct {
+    Notes []Note `json:&quot;notes&quot;`
+}
+
+func find(id int) Note {
+    note := Note{}
+    pg.DB.Where(&quot;id = ?&quot;, id).First(&amp;note)
+    return note
+}
+
+func destroy(id int) {
+    pg.DB.Delete(Note{}, &quot;id = ?&quot;, id)
+}
+</code></pre>
+
+<h3 id="kontroler">Kontroler</h3>
+
+<p>Plik <strong>/note/controller.go</strong> zawiera kod kontrolera:</p>
+
+<pre><code>package note
+
+import (
+    &quot;log&quot;
+    &quot;notes/db/pg&quot;
+
+    &quot;github.com/kataras/iris&quot;
+)
+
+func List(c *iris.Context) {
+    notes := Notes{}
+    pg.DB.Find(&amp;notes.Notes)
+    c.JSON(iris.StatusOK, notes)
+}
+
+func Show(c *iris.Context) {
+    id, err := c.ParamInt(&quot;id&quot;)
+    if err != nil {
+        log.Println(err)
+    }
+
+    note := find(id)
+    if note.ID == 0 {
+        c.JSON(iris.StatusNotFound, map[string]string{&quot;error&quot;: &quot;Note not found.&quot;})
+    } else {
+        c.JSON(iris.StatusOK, note)
+    }
+}
+
+func Create(c *iris.Context) {
+    var note Note
+
+    err := c.ReadJSON(&amp;note)
+    if err != nil {
+        log.Println(err)
+    }
+
+    pg.DB.Create(&amp;note)
+    c.JSON(iris.StatusOK, note)
+}
+
+func Destroy(c *iris.Context) {
+    id, err := c.ParamInt(&quot;id&quot;)
+    if err != nil {
+        log.Println(err)
+    }
+    destroy(id)
+}
+</code></pre>
+
+<h2 id="paczka-tag">Paczka tag</h2>
+
+<p>W katalogu <strong>/tag</strong> znajduje się kod dotyczący Tagów.</p>
+
+<h3 id="model-1">Model</h3>
+
+<p>Zawartość pliku <strong>/tag/model.go</strong>:</p>
+
+<pre><code>package tag
+
+import (
+    &quot;notes/db/pg&quot;
+    &quot;time&quot;
+)
+
+type Tag struct {
+    ID        uint      `json:&quot;id&quot;`
+    CreatedAt time.Time `json:&quot;created_at&quot;`
+    UpdatedAt time.Time `json:&quot;updated_at&quot;`
+    Name      string    `json:&quot;name&quot;`
+}
+
+type Tags struct {
+    Tags []Tag `json:&quot;tags&quot;`
+}
+
+func find(id int) Tag {
+    tag := Tag{}
+    pg.DB.Where(&quot;id = ?&quot;, id).First(&amp;tag)
+    return tag
+}
+</code></pre>
+
+<h3 id="kontroler-1">Kontroler</h3>
+
+<p>Plik <strong>/tag/controller.go</strong>:</p>
+
+<pre><code>package tag
+
+import (
+    &quot;log&quot;
+    &quot;notes/db/pg&quot;
+
+    &quot;github.com/kataras/iris&quot;
+)
+
+func List(c *iris.Context) {
+    tags := Tags{}
+    pg.DB.Find(&amp;tags.Tags)
+    c.JSON(iris.StatusOK, tags)
+}
+
+func Show(c *iris.Context) {
+    id, err := c.ParamInt(&quot;id&quot;)
+    if err != nil {
+        log.Println(err)
+    }
+
+    tag := find(id)
+    if tag.ID == 0 {
+        c.JSON(iris.StatusNotFound, map[string]string{&quot;error&quot;: &quot;Tag not found.&quot;})
+    } else {
+        c.JSON(iris.StatusOK, tag)
+    }
+}
+</code></pre>
+
+<h2 id="podsumowanie">Podsumowanie</h2>
+
+<p>Jak widać Iris sporo upraszcza, standardowe handlery z paczki net/http
+przyjmują dwa parametry, request oraz response. W Iris to jest tylko jeden
+wskaźnik na kontekst. Odczytanie parametru w url, konwersja do typu
+całkowitego, odczytanie formatu json z body zapytania POST, zwrócenie jsona
+z odpowiednim nagłówkiem statusu i wiele wiele innych standardowych operacji
+staje się dużo łatwiejszych.</p>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="http://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="http://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/">Historia poleceń: czas wykonania komendy</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="http://practical-coder.github.io/notatki/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+

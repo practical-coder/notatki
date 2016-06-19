@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.16" />
+
+  <title>Go: odbiorca metody, przykłady &middot; Notatki</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://practical-coder.github.io/notatki/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://practical-coder.github.io/notatki/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="http://practical-coder.github.io/notatki/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/agate.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="http://practical-coder.github.io/notatki/img/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/categories/"><i class='fa fa-sitemap fa-fw'></i>Categories</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="http://practical-coder.github.io/notatki/tags/"><i class='fa fa-tags fa-fw'></i>Tags</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Go: odbiorca metody, przykłady</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>19 Jun 2016, 09:03</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/go">go</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/golang">golang</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="http://practical-coder.github.io/notatki/tags/pl">pl</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>W Go po słowie kluczowym <strong><code>func</code></strong>, a przed nazwą metody, możemy określić jej odbiorcę.
+Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość.
+W metodach <strong><code>Len()</code></strong>, <strong><code>Cap()</code></strong>, <strong><code>IsEmpty()</code></strong> oraz <strong><code>Top()</code></strong> odbiorcą jest <strong><code>Stack</code></strong>. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu.
+Natomiast jeżeli metoda modyfikuje obiekt, wtedy odbiorca określany jest wskaźnikiem do obiektu.
+Tak się dzieje w metodach <strong><code>Push()</code></strong> i <strong><code>Pop()</code></strong>. Tam odbiorcą jest <strong><code>*Stack</code></strong>.</p>
+
+<pre><code>package stack
+
+import &quot;errors&quot;
+
+type Stack []interface{}
+
+func (stack Stack) Len() int {
+    return len(stack)
+}
+
+func (stack Stack) Cap() int {
+    return cap(stack)
+}
+
+func (stack Stack) IsEmpty() bool {
+    return len(stack) == 0
+}
+
+func (stack Stack) Top() (interface{}, error) {
+    if stack.IsEmpty() {
+        return nil, errors.New(&quot;Cannot Top() an empty stack&quot;)
+    } else {
+        return stack[len(stack)-1], nil
+    }
+}
+
+func (stack *Stack) Push(x interface{}) {
+    *stack = append(*stack, x)
+}
+
+func (stack *Stack) Pop() (interface{}, error) {
+    tempStack := *stack
+    if tempStack.IsEmpty() {
+        return nil, errors.New(&quot;Cannot Pop() an empty stack&quot;)
+    } else {
+        item := tempStack[len(tempStack)-1]
+        *stack = tempStack[:len(tempStack)-1]
+        return item, nil
+    }
+}
+</code></pre>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="http://practical-coder.github.io/notatki/post/testing-notes-with-curl/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="http://practical-coder.github.io/notatki/post/testing-notes-with-curl/">Testing notes with curl</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/">Vim: przywrócenie autouzupełniania</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="http://practical-coder.github.io/notatki/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+
