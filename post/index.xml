@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Notatki</title>
-    <link>http://practical-coder.github.io/post/</link>
+    <link>http://practical-coder.github.io/notatki/post/</link>
     <description>Recent content in Posts on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <lastBuildDate>Sun, 19 Jun 2016 13:17:21 +0200</lastBuildDate>
-    <atom:link href="http://practical-coder.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://practical-coder.github.io/notatki/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go: przykład JSON api za pomocą Iris oraz GORM</title>
-      <link>http://practical-coder.github.io/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</link>
+      <link>http://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</link>
       <pubDate>Sun, 19 Jun 2016 13:17:21 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</guid>
+      <guid>http://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</guid>
       <description>
 
 &lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
@@ -275,10 +275,10 @@ staje się dużo łatwiejszych.&lt;/p&gt;
     
     <item>
       <title>Historia poleceń: czas wykonania komendy</title>
-      <link>http://practical-coder.github.io/post/historia-polecen%CC%81-czas-wykonania-komendy/</link>
+      <link>http://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/</link>
       <pubDate>Sun, 19 Jun 2016 10:08:34 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/post/historia-polecen%CC%81-czas-wykonania-komendy/</guid>
+      <guid>http://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/</guid>
       <description>&lt;p&gt;Domyślnie pierwsza kolumna wpisu historii powłoki zawiera tylko id wykonanej komendy. Nie ma jednak informacji o czasie jej wykonania.
 Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową &lt;strong&gt;HISTTIMEFORMAT&lt;/strong&gt;:&lt;/p&gt;
 
@@ -289,10 +289,10 @@ Aby taką informację dodać, należy ustawić format czasu jaki powinien być w
     
     <item>
       <title>OS X: usługi nasłuchujące</title>
-      <link>http://practical-coder.github.io/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</link>
+      <link>http://practical-coder.github.io/notatki/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</link>
       <pubDate>Sun, 19 Jun 2016 09:47:25 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</guid>
+      <guid>http://practical-coder.github.io/notatki/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</guid>
       <description>&lt;p&gt;W OS X polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo lsof -i tcp -nP -stcp:listen
@@ -344,10 +344,10 @@ tcp6       0      0 :::65432                :::*                    LISTEN      
     
     <item>
       <title>Vim: przywrócenie autouzupełniania</title>
-      <link>http://practical-coder.github.io/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</link>
+      <link>http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</link>
       <pubDate>Sun, 19 Jun 2016 09:33:54 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</guid>
+      <guid>http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</guid>
       <description>&lt;p&gt;Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
 przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.&lt;/p&gt;
 
@@ -359,10 +359,10 @@ YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer
     
     <item>
       <title>Go: odbiorca metody, przykłady</title>
-      <link>http://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/</link>
+      <link>http://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</link>
       <pubDate>Sun, 19 Jun 2016 09:03:31 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
+      <guid>http://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
       <description>&lt;p&gt;W Go po słowie kluczowym &lt;strong&gt;&lt;code&gt;func&lt;/code&gt;&lt;/strong&gt;, a przed nazwą metody, możemy określić jej odbiorcę.
 Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość.
 W metodach &lt;strong&gt;&lt;code&gt;Len()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;Cap()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;IsEmpty()&lt;/code&gt;&lt;/strong&gt; oraz &lt;strong&gt;&lt;code&gt;Top()&lt;/code&gt;&lt;/strong&gt; odbiorcą jest &lt;strong&gt;&lt;code&gt;Stack&lt;/code&gt;&lt;/strong&gt;. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu.
@@ -415,10 +415,10 @@ func (stack *Stack) Pop() (interface{}, error) {
     
     <item>
       <title>Testing notes with curl</title>
-      <link>http://practical-coder.github.io/post/testing-notes-with-curl/</link>
+      <link>http://practical-coder.github.io/notatki/post/testing-notes-with-curl/</link>
       <pubDate>Sun, 19 Jun 2016 08:11:03 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/post/testing-notes-with-curl/</guid>
+      <guid>http://practical-coder.github.io/notatki/post/testing-notes-with-curl/</guid>
       <description>&lt;p&gt;To test creating notes with api, use sample &lt;code&gt;note.json&lt;/code&gt; in main
 directory and post it with curl:&lt;/p&gt;
 
