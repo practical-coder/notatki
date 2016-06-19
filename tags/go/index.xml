@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on Notatki</title>
-    <link>http://practical-coder.github.io/notatki/tags/go/</link>
+    <link>https://practical-coder.github.io/notatki/tags/go/</link>
     <description>Recent content in Go on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <lastBuildDate>Sun, 19 Jun 2016 13:17:21 +0200</lastBuildDate>
-    <atom:link href="http://practical-coder.github.io/notatki/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://practical-coder.github.io/notatki/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go: przykład JSON api za pomocą Iris oraz GORM</title>
-      <link>http://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</link>
+      <link>https://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</link>
       <pubDate>Sun, 19 Jun 2016 13:17:21 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</guid>
       <description>
 
 &lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
@@ -275,10 +275,10 @@ staje się dużo łatwiejszych.&lt;/p&gt;
     
     <item>
       <title>Go: odbiorca metody, przykłady</title>
-      <link>http://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</link>
+      <link>https://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</link>
       <pubDate>Sun, 19 Jun 2016 09:03:31 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
       <description>&lt;p&gt;W Go po słowie kluczowym &lt;strong&gt;&lt;code&gt;func&lt;/code&gt;&lt;/strong&gt;, a przed nazwą metody, możemy określić jej odbiorcę.
 Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość.
 W metodach &lt;strong&gt;&lt;code&gt;Len()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;Cap()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;IsEmpty()&lt;/code&gt;&lt;/strong&gt; oraz &lt;strong&gt;&lt;code&gt;Top()&lt;/code&gt;&lt;/strong&gt; odbiorcą jest &lt;strong&gt;&lt;code&gt;Stack&lt;/code&gt;&lt;/strong&gt;. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu.

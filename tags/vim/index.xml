@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on Notatki</title>
-    <link>http://practical-coder.github.io/notatki/tags/vim/</link>
+    <link>https://practical-coder.github.io/notatki/tags/vim/</link>
     <description>Recent content in Vim on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <lastBuildDate>Sun, 19 Jun 2016 09:33:54 +0200</lastBuildDate>
-    <atom:link href="http://practical-coder.github.io/notatki/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://practical-coder.github.io/notatki/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Vim: przywrócenie autouzupełniania</title>
-      <link>http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</link>
+      <link>https://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</link>
       <pubDate>Sun, 19 Jun 2016 09:33:54 +0200</pubDate>
       
-      <guid>http://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</guid>
       <description>&lt;p&gt;Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
 przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.&lt;/p&gt;
 
