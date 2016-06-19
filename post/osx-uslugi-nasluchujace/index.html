@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.16" />
+
+  <title>OS X usługi nasłuchujące &middot; Notatki</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://practical-coder.github.io/notatki/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://practical-coder.github.io/notatki/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://practical-coder.github.io/notatki/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/agate.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://practical-coder.github.io/notatki/img/favicon.ico" type="image/x-icon" />
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/categories/"><i class='fa fa-sitemap fa-fw'></i>Categories</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/tags/"><i class='fa fa-tags fa-fw'></i>Tags</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>OS X usługi nasłuchujące</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>19 Jun 2016, 18:55</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/osx">osx</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/bash">bash</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/lsof">lsof</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/pl">pl</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>W OS X polecenie <strong><code>netstat</code></strong> zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia <strong><code>lsof</code></strong>. Przykładowo:</p>
+
+<pre><code class="language-bash">sudo lsof -i tcp -nP -stcp:listen
+</code></pre>
+
+<pre><code class="language-bash">COMMAND    PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+nginx       57   root    8u  IPv4 0x44ebc4a200674587      0t0  TCP *:8080 (LISTEN)
+nginx       57   root    9u  IPv4 0x44ebc4a2006721a7      0t0  TCP *:80 (LISTEN)
+nxserver.   78     nx   13u  IPv4 0x44ebc4a201602397      0t0  TCP 127.0.0.1:23998 (LISTEN)
+ss_conn_s   79   root    7u  IPv4 0x44ebc4a200673c8f      0t0  TCP 127.0.0.1:50911 (LISTEN)
+nginx      222 nobody    8u  IPv4 0x44ebc4a200674587      0t0  TCP *:8080 (LISTEN)
+nginx      222 nobody    9u  IPv4 0x44ebc4a2006721a7      0t0  TCP *:80 (LISTEN)
+nxd        266     nx    3u  IPv4 0x44ebc4a200673397      0t0  TCP *:4000 (LISTEN)
+nxd        266     nx    4u  IPv6 0x44ebc4a2015fbaaf      0t0  TCP *:4000 (LISTEN)
+mongod     427    jac    6u  IPv4 0x44ebc4a202ae5587      0t0  TCP 127.0.0.1:27017 (LISTEN)
+java       431    jac  115u  IPv6 0x44ebc4a2015fafef      0t0  TCP 127.0.0.1:9300 (LISTEN)
+java       431    jac  144u  IPv6 0x44ebc4a20a9f600f      0t0  TCP 127.0.0.1:9200 (LISTEN)
+redis-ser  433    jac    4u  IPv4 0x44ebc4a202a868af      0t0  TCP 127.0.0.1:6379 (LISTEN)
+postgres   443    jac    5u  IPv6 0x44ebc4a2015fc56f      0t0  TCP [::1]:5432 (LISTEN)
+postgres   443    jac    6u  IPv6 0x44ebc4a2015fc00f      0t0  TCP [fe80:1::1]:5432 (LISTEN)
+postgres   443    jac    7u  IPv4 0x44ebc4a202a87a9f      0t0  TCP 127.0.0.1:5432 (LISTEN)
+SpotifyWe  444    jac    6u  IPv4 0x44ebc4a202ae5e7f      0t0  TCP 127.0.0.1:4370 (LISTEN)
+SpotifyWe  444    jac    7u  IPv4 0x44ebc4a202a88c8f      0t0  TCP 127.0.0.1:4380 (LISTEN)
+nxserver.  827     nx    4u  IPv4 0x44ebc4a20a407397      0t0  TCP 127.0.0.1:20000 (LISTEN)
+nxnode.bi  868    jac   15u  IPv4 0x44ebc4a20a4f6e7f      0t0  TCP 127.0.0.1:12002 (LISTEN)
+nxnode.bi  868    jac   17u  IPv6 0x44ebc4a2015fb54f      0t0  TCP [::1]:7002 (LISTEN)
+nxnode.bi  868    jac   18u  IPv4 0x44ebc4a20a50b397      0t0  TCP 127.0.0.1:7002 (LISTEN)
+nxclient   897    jac    6u  IPv4 0x44ebc4a20a50ce7f      0t0  TCP 127.0.0.1:25002 (LISTEN)
+Python    1562    jac   11u  IPv4 0x44ebc4a20a4f4a9f      0t0  TCP 127.0.0.1:50120 (LISTEN)
+ruby      1879    jac   10u  IPv4 0x44ebc4a203053c8f      0t0  TCP 127.0.0.1:50274 (LISTEN)
+ruby      1881    jac   10u  IPv4 0x44ebc4a203052a9f      0t0  TCP 127.0.0.1:50276 (LISTEN)
+</code></pre>
+
+<p>Informacje do przejrzenia są mniej więcej odpowiednikiem starego i wypróbowanego</p>
+
+<pre><code class="language-bash">netstat -lntp
+</code></pre>
+
+<pre><code class="language-bash">Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:5666            0.0.0.0:*               LISTEN      846/nrpe
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      17504/sshd
+tcp        0      0 0.0.0.0:65432           0.0.0.0:*               LISTEN      9137/memcached
+tcp6       0      0 :::22                   :::*                    LISTEN      17504/sshd
+tcp6       0      0 :::65432                :::*                    LISTEN      9137/memcached
+</code></pre>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/">Vim przywrócenie autouzupełniania</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/">Historia poleceń, czas wykonania komendy</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://practical-coder.github.io/notatki/js/ui.js"></script>
+
+
+
+
+</body>
+</html>
+

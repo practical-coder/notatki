@@ -6,15 +6,15 @@
     <description>Recent content in Vim on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
-    <lastBuildDate>Sun, 19 Jun 2016 09:33:54 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jun 2016 18:53:16 +0200</lastBuildDate>
     <atom:link href="https://practical-coder.github.io/notatki/categories/vim/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Vim: przywrócenie autouzupełniania</title>
-      <link>https://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</link>
-      <pubDate>Sun, 19 Jun 2016 09:33:54 +0200</pubDate>
+      <title>Vim przywrócenie autouzupełniania</title>
+      <link>https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/</link>
+      <pubDate>Sun, 19 Jun 2016 18:53:16 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/</guid>
       <description>&lt;p&gt;Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
 przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.&lt;/p&gt;
 

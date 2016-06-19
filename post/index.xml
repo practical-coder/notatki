@@ -6,15 +6,15 @@
     <description>Recent content in Posts on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
-    <lastBuildDate>Sun, 19 Jun 2016 13:17:21 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jun 2016 18:59:26 +0200</lastBuildDate>
     <atom:link href="https://practical-coder.github.io/notatki/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Go: przykład JSON api za pomocą Iris oraz GORM</title>
-      <link>https://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</link>
-      <pubDate>Sun, 19 Jun 2016 13:17:21 +0200</pubDate>
+      <title>Go przykład json api z użyciem Iris oraz GORM</title>
+      <link>https://practical-coder.github.io/notatki/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</link>
+      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/go-notatki-przyk%C5%82ad-json-api-za-pomoca%CC%A8-iris-oraz-gorm/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</guid>
       <description>
 
 &lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
@@ -274,11 +274,11 @@ staje się dużo łatwiejszych.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Historia poleceń: czas wykonania komendy</title>
-      <link>https://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/</link>
-      <pubDate>Sun, 19 Jun 2016 10:08:34 +0200</pubDate>
+      <title>Historia poleceń, czas wykonania komendy</title>
+      <link>https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/</link>
+      <pubDate>Sun, 19 Jun 2016 18:57:32 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/historia-polecen%CC%81-czas-wykonania-komendy/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/</guid>
       <description>&lt;p&gt;Domyślnie pierwsza kolumna wpisu historii powłoki zawiera tylko id wykonanej komendy. Nie ma jednak informacji o czasie jej wykonania.
 Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową &lt;strong&gt;HISTTIMEFORMAT&lt;/strong&gt;:&lt;/p&gt;
 
@@ -288,11 +288,11 @@ Aby taką informację dodać, należy ustawić format czasu jaki powinien być w
     </item>
     
     <item>
-      <title>OS X: usługi nasłuchujące</title>
-      <link>https://practical-coder.github.io/notatki/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</link>
-      <pubDate>Sun, 19 Jun 2016 09:47:25 +0200</pubDate>
+      <title>OS X usługi nasłuchujące</title>
+      <link>https://practical-coder.github.io/notatki/post/osx-uslugi-nasluchujace/</link>
+      <pubDate>Sun, 19 Jun 2016 18:55:16 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/osx-us%C5%82ugi-nas%C5%82uchuja%CC%A8ce/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/osx-uslugi-nasluchujace/</guid>
       <description>&lt;p&gt;W OS X polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo lsof -i tcp -nP -stcp:listen
@@ -343,11 +343,11 @@ tcp6       0      0 :::65432                :::*                    LISTEN      
     </item>
     
     <item>
-      <title>Vim: przywrócenie autouzupełniania</title>
-      <link>https://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</link>
-      <pubDate>Sun, 19 Jun 2016 09:33:54 +0200</pubDate>
+      <title>Vim przywrócenie autouzupełniania</title>
+      <link>https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/</link>
+      <pubDate>Sun, 19 Jun 2016 18:53:16 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/vim-przywro%CC%81cenie-autouzupe%C5%82niania/</guid>
+      <guid>https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/</guid>
       <description>&lt;p&gt;Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
 przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.&lt;/p&gt;
 
