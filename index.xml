@@ -6,8 +6,208 @@
     <description>Recent content on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
-    <lastBuildDate>Sun, 19 Jun 2016 18:59:26 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate>
     <atom:link href="https://practical-coder.github.io/notatki/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Docker Remote API - poligon</title>
+      <link>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</link>
+      <pubDate>Sat, 16 Jul 2016 22:35:19 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</guid>
+      <description>
+
+&lt;h1 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h1&gt;
+
+&lt;p&gt;Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
+Docker Remote API używając gniazda &lt;code&gt;/var/run/docker.sock&lt;/code&gt;. Podobnie jest
+w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.&lt;/p&gt;
+
+&lt;h2 id=&#34;konsola-curl&#34;&gt;konsola - curl&lt;/h2&gt;
+
+&lt;p&gt;Do przetestowania odpowiedzi demona wykorzystujemy najpierw klienta &lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl -s --unix-socket /var/run/docker.sock http:/info | jq &#39;.ContainersRunning&#39;
+2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Za pomocą &lt;code&gt;jq&lt;/code&gt; ograniczono odpowiedź &lt;code&gt;/info&lt;/code&gt; do wartości klucza
+&lt;code&gt;.ContainersRunning&lt;/code&gt;, czyli &lt;code&gt;2&lt;/code&gt;.
+Należy zwrócić uwagę na &lt;code&gt;http:/info&lt;/code&gt; i pojedynczy znak &lt;code&gt;/&lt;/code&gt;. Jeżeli przez
+pomyłkę użyjemy &lt;code&gt;http://info&lt;/code&gt; dostaniemy odpowiedź:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl -s --unix-socket /var/run/docker.sock http://info | jq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;message&amp;quot;: &amp;quot;page not found&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl -s --unix-socket /var/run/docker.sock http:/containers/json?limit=1 | jq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[
+  {
+    &amp;quot;Id&amp;quot;: &amp;quot;e0649129b761be2207627b0527ba17534180e4f0e74a4f2b0d6a1c9af29a445c&amp;quot;,
+    &amp;quot;Names&amp;quot;: [
+      &amp;quot;/romantic_colden&amp;quot;
+    ],
+    &amp;quot;Image&amp;quot;: &amp;quot;basics:v1&amp;quot;,
+    &amp;quot;ImageID&amp;quot;: &amp;quot;sha256:ff3eac843704765ab36cdd5e47d790c9fc131b7441e91a3e102d757241208684&amp;quot;,
+    &amp;quot;Command&amp;quot;: &amp;quot;/go/bin/basics_lin&amp;quot;,
+    &amp;quot;Created&amp;quot;: 1468009653,
+    &amp;quot;Ports&amp;quot;: [],
+    &amp;quot;Labels&amp;quot;: {},
+    &amp;quot;State&amp;quot;: &amp;quot;exited&amp;quot;,
+    &amp;quot;Status&amp;quot;: &amp;quot;Exited (0) 32 hours ago&amp;quot;,
+    &amp;quot;HostConfig&amp;quot;: {
+      &amp;quot;NetworkMode&amp;quot;: &amp;quot;default&amp;quot;
+    },
+    &amp;quot;NetworkSettings&amp;quot;: {
+      &amp;quot;Networks&amp;quot;: {
+        &amp;quot;bridge&amp;quot;: {
+          &amp;quot;IPAMConfig&amp;quot;: null,
+          &amp;quot;Links&amp;quot;: null,
+          &amp;quot;Aliases&amp;quot;: null,
+          &amp;quot;NetworkID&amp;quot;: &amp;quot;85b9fda269593cd1af519f92593dd49027ed7cc97b4dbf8258498d43313ac3d7&amp;quot;,
+          &amp;quot;EndpointID&amp;quot;: &amp;quot;&amp;quot;,
+          &amp;quot;Gateway&amp;quot;: &amp;quot;&amp;quot;,
+          &amp;quot;IPAddress&amp;quot;: &amp;quot;&amp;quot;,
+          &amp;quot;IPPrefixLen&amp;quot;: 0,
+          &amp;quot;IPv6Gateway&amp;quot;: &amp;quot;&amp;quot;,
+          &amp;quot;GlobalIPv6Address&amp;quot;: &amp;quot;&amp;quot;,
+          &amp;quot;GlobalIPv6PrefixLen&amp;quot;: 0,
+          &amp;quot;MacAddress&amp;quot;: &amp;quot;&amp;quot;
+        }
+      }
+    },
+    &amp;quot;Mounts&amp;quot;: []
+  }
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;go-engine-api&#34;&gt;Go - engine-api&lt;/h2&gt;
+
+&lt;p&gt;Teraz podobna operacja, tylko za pomocą engine-api, nie wypisujemy wszystkich
+informacji oraz używamy formatu tekstowego zamiast JSON:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+	&amp;quot;fmt&amp;quot;
+
+	&amp;quot;github.com/docker/engine-api/client&amp;quot;
+	&amp;quot;github.com/docker/engine-api/types&amp;quot;
+	&amp;quot;golang.org/x/net/context&amp;quot;
+)
+
+func main() {
+	defaultHeaders := map[string]string{&amp;quot;User-Agent&amp;quot;: &amp;quot;engine-api-cli-1.0&amp;quot;}
+	cli, err := client.NewClient(&amp;quot;unix:///var/run/docker.sock&amp;quot;, &amp;quot;v1.24&amp;quot;, nil, defaultHeaders)
+	if err != nil {
+		panic(err)
+	}
+
+	options := types.ContainerListOptions{Latest: true, Limit: 1}
+	containers, err := cli.ContainerList(context.Background(), options)
+	if err != nil {
+		panic(err)
+	}
+
+	for _, c := range containers {
+		fmt.Println(c.ID, c.Names, c.Created, c.Image, c.Ports, c.State, c.Status)
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Po skompilowaniu i uruchomieniu otrzymujemy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./dockering
+e0649129b761be2207627b0527ba17534180e4f0e74a4f2b0d6a1c9af29a445c [/romantic_colden] 1468009653 basics:v1 [] exited Exited (0) 32 hours ago
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bez rewelacji, ale sprawdziliśmy połączenie z poziomu Go, zawsze coś.&lt;/p&gt;
+
+&lt;h1 id=&#34;połączenie-na-porcie-tcp-używając-tls&#34;&gt;Połączenie na porcie TCP używając TLS&lt;/h1&gt;
+
+&lt;h2 id=&#34;konsola-curl-1&#34;&gt;konsola - curl&lt;/h2&gt;
+
+&lt;p&gt;Systemy produkcyjne, a także Docker Machine, wystawiają API protokołem https na
+porcie TCP, domyślnie, o numerze &lt;code&gt;2376&lt;/code&gt;.
+Na próbę połączmy się z API lokalnego Docker Machine, jeżeli środowisko jest prawidłowo
+skonfigurowane powinna być dostępna zmienna &lt;code&gt;DOCKER_CERT_PATH&lt;/code&gt;, domyślny adres IP Docker Machine to &lt;code&gt;192.168.99.100&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl --cert $DOCKER_CERT_PATH/cert.pem --key $DOCKER_CERT_PATH/key.pem https://192.168.99.100:2376/info
+curl: (58) SSL: Can&#39;t load the certificate &amp;quot;/Users/jac/.docker/machine/machines/default/cert.pem&amp;quot; and its private key: OSStatus -25299
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Niestety jest problem, jedno z proponowanych rozwiązań, to inny format
+przekazywania klucza i certyfikatu.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ openssl pkcs12 -export -in $DOCKER_CERT_PATH/cert.pem -inkey $DOCKER_CERT_PATH/key.pem -out $DOCKER_CERT_PATH/cert.pfx -password pass:niejawne
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Przetestujmy czy to działa:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ curl -s --cert $DOCKER_CERT_PATH/cert.pfx --cacert $DOCKER_CERT_PATH/ca.pem --pass niejawne https://192.168.99.100:2376/info | jq &#39;.ContainersRunning&#39;
+1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Zapytanie się powiodło. Na Docker Machine działa jeden kontener.&lt;/p&gt;
+
+&lt;h2 id=&#34;go-engine-api-1&#34;&gt;Go - engine-api&lt;/h2&gt;
+
+&lt;p&gt;Przetestujmy to samo z Go. Sprawę ułatwia &lt;code&gt;NewEnvClient&lt;/code&gt;. Dane do połączenia
+brane są ze zmiennych środowiskowych.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+	&amp;quot;fmt&amp;quot;
+	&amp;quot;os&amp;quot;
+
+	&amp;quot;github.com/docker/engine-api/client&amp;quot;
+	&amp;quot;github.com/docker/engine-api/types&amp;quot;
+	&amp;quot;golang.org/x/net/context&amp;quot;
+)
+
+func main() {
+	os.Setenv(&amp;quot;DOCKER_HOST&amp;quot;, &amp;quot;https://192.168.99.100:2376&amp;quot;)
+	os.Setenv(&amp;quot;DOCKER_API_VERSION&amp;quot;, &amp;quot;v1.23&amp;quot;)
+	os.Setenv(&amp;quot;DOCKER_CERT_PATH&amp;quot;, &amp;quot;/Users/jac/.docker/machine/machines/default&amp;quot;)
+
+	cli, err := client.NewEnvClient()
+	if err != nil {
+		panic(err)
+	}
+
+	options := types.ContainerListOptions{Latest: true, Limit: 1}
+	containers, err := cli.ContainerList(context.Background(), options)
+	if err != nil {
+		panic(err)
+	}
+
+	for _, c := range containers {
+		fmt.Println(c.ID, c.Names, c.Created, c.Image, c.Ports, c.State, c.Status)
+	}
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Docker dla Mac na lokalnym używa API w wersj v1.24.
+Docker Machine na lokalnym systemie jest w starszej wersji API: v1.23. W kodzie ustawiamy odpowiednią
+zmienną środowiskową, tak, żeby wersja klienta nie była nowsza niż wersja serwera.
+Po skompilowaniu, uruchamiamy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go build
+$ ./dockering
+28884f52d089b869559b3305f1fb1c6c450d69be76f3bb56fbb691bd7b6bcf65 [/hungry_tesla] 1467147773 szuka_dev [] exited Exited (2) 2 weeks ago
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Otrzymaliśmy dane o kontenerze na Docker Machine. Wszystko poszło zgodnie z planem.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Go przykład json api z użyciem Iris oraz GORM</title>

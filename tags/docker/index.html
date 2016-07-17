@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.16" />
 
-  <title>Tags &middot; Notatki</title>
+  <title>Docker &middot; Notatki</title>
 
   
   
@@ -37,7 +37,7 @@
 
   
   
-  <link rel="alternate" type="application/rss+xml" title="Notatki" href="https://practical-coder.github.io/notatki/tags/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Notatki" href="https://practical-coder.github.io/notatki/tags/docker/index.xml" />
   
 
   
@@ -98,7 +98,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/tags/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/tags/docker/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
     </li>
     
 
@@ -168,73 +168,59 @@
 
 
 <div class="header">
-  <h1>Tags</h1>
+  <h1>Docker</h1>
 </div>
+
 <div class="content">
-  <ul>
+  
+    <article>
+  <header>
+    <h2><a href="https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/">Docker Remote API - poligon</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>16 Jul 2016, 22:35</time>
+  </div>
+
+  
+
   
   
-    <li>
-      <a href="pl">pl</a>
-      <span>&#40;5&#41;</span>
-    </li>
   
-    <li>
-      <a href="go">go</a>
-      <span>&#40;3&#41;</span>
-    </li>
   
-    <li>
-      <a href="bash">bash</a>
-      <span>&#40;2&#41;</span>
-    </li>
+
   
-    <li>
-      <a href="golang">golang</a>
-      <span>&#40;2&#41;</span>
-    </li>
   
-    <li>
-      <a href="curl">curl</a>
-      <span>&#40;1&#41;</span>
-    </li>
   
-    <li>
-      <a href="docker">docker</a>
-      <span>&#40;1&#41;</span>
-    </li>
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/docker">docker</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/go">go</a>
+    
+  </div>
   
-    <li>
-      <a href="en">en</a>
-      <span>&#40;1&#41;</span>
-    </li>
   
-    <li>
-      <a href="gorm">gorm</a>
-      <span>&#40;1&#41;</span>
-    </li>
+
+</div>
+
+  </header>
+
+  <p>
+  Połączenie z gniazdem unixowym Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z Docker Remote API używając gniazda /var/run/docker.sock. Podobnie jest w przypadku instalacji Docker dla Mac wykorzystującej xhyvie. konsola - curl Do przetestowania odpowiedzi demona wykorzystujemy najpierw klienta curl: $ curl -s --unix-socket /var/run/docker.sock http:/info | jq '.ContainersRunning' 2 Za pomocą jq ograniczono odpowiedź /info do wartości klucza .ContainersRunning, czyli 2. Należy zwrócić uwagę na http:/info i pojedynczy znak /.
+  </p>
+
   
-    <li>
-      <a href="iris">iris</a>
-      <span>&#40;1&#41;</span>
-    </li>
+  <footer>
+    <a href="https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
   
-    <li>
-      <a href="lsof">lsof</a>
-      <span>&#40;1&#41;</span>
-    </li>
+</article>
+
   
-    <li>
-      <a href="osx">osx</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-    <li>
-      <a href="vim">vim</a>
-      <span>&#40;1&#41;</span>
-    </li>
-  
-  </ul>
 </div>
 
 </div>
