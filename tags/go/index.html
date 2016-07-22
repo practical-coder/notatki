@@ -154,11 +154,16 @@
 
     
 
+    
+
   </ul>
 </div>
 
 
   <div>
+  <div class="small-print">
+    <small>©2016 Jac</small>
+  </div>
 </div>
 
 </div>
@@ -210,7 +215,12 @@
   </header>
 
   <p>
-  Połączenie z gniazdem unixowym Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z Docker Remote API używając gniazda /var/run/docker.sock. Podobnie jest w przypadku instalacji Docker dla Mac wykorzystującej xhyvie. konsola - curl Do przetestowania odpowiedzi demona wykorzystujemy najpierw klienta curl: $ curl -s --unix-socket /var/run/docker.sock http:/info | jq '.ContainersRunning' 2 Za pomocą jq ograniczono odpowiedź /info do wartości klucza .ContainersRunning, czyli 2. Należy zwrócić uwagę na http:/info i pojedynczy znak /.
+  <h2 id="połączenie-z-gniazdem-unixowym">Połączenie z gniazdem unixowym</h2>
+
+<p>Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
+Docker Remote API używając gniazda <code>/var/run/docker.sock</code>. Podobnie jest
+w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.</p>
+
   </p>
 
   
@@ -261,7 +271,13 @@
   </header>
 
   <p>
-  Organizacja kodu Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON wykorzystany zostanie framework Iris. Struktura plików aplikacji: notes (master) $ tree . ├── db │ └── pg │ └── pg.go ├── main.go ├── note │ ├── controller.go │ └── model.go └── tag ├── controller.go └── model.go 4 directories, 6 files Plik main.go stanowi punkt wejścia aplikacji.
+  <h2 id="organizacja-kodu">Organizacja kodu</h2>
+
+<p>Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
+PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
+do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
+wykorzystany zostanie framework Iris.</p>
+
   </p>
 
   

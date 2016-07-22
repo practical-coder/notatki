@@ -6,6 +6,7 @@
     <description>Recent content in Docker on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
+    <copyright>©2016 Jac</copyright>
     <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate>
     <atom:link href="https://practical-coder.github.io/notatki/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,13 +18,13 @@
       <guid>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</guid>
       <description>
 
-&lt;h1 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h1&gt;
+&lt;h2 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h2&gt;
 
 &lt;p&gt;Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
 Docker Remote API używając gniazda &lt;code&gt;/var/run/docker.sock&lt;/code&gt;. Podobnie jest
 w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.&lt;/p&gt;
 
-&lt;h2 id=&#34;konsola-curl&#34;&gt;konsola - curl&lt;/h2&gt;
+&lt;h3 id=&#34;konsola-curl&#34;&gt;konsola - curl&lt;/h3&gt;
 
 &lt;p&gt;Do przetestowania odpowiedzi demona wykorzystujemy najpierw klienta &lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
 
@@ -87,7 +88,7 @@ pomyłkę użyjemy &lt;code&gt;http://info&lt;/code&gt; dostaniemy odpowiedź:&l
 ]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;go-engine-api&#34;&gt;Go - engine-api&lt;/h2&gt;
+&lt;h3 id=&#34;go-engine-api&#34;&gt;Go - engine-api&lt;/h3&gt;
 
 &lt;p&gt;Teraz podobna operacja, tylko za pomocą engine-api, nie wypisujemy wszystkich
 informacji oraz używamy formatu tekstowego zamiast JSON:&lt;/p&gt;
@@ -129,9 +130,9 @@ e0649129b761be2207627b0527ba17534180e4f0e74a4f2b0d6a1c9af29a445c [/romantic_cold
 
 &lt;p&gt;Bez rewelacji, ale sprawdziliśmy połączenie z poziomu Go, zawsze coś.&lt;/p&gt;
 
-&lt;h1 id=&#34;połączenie-na-porcie-tcp-używając-tls&#34;&gt;Połączenie na porcie TCP używając TLS&lt;/h1&gt;
+&lt;h2 id=&#34;połączenie-na-porcie-tcp-używając-tls&#34;&gt;Połączenie na porcie TCP używając TLS&lt;/h2&gt;
 
-&lt;h2 id=&#34;konsola-curl-1&#34;&gt;konsola - curl&lt;/h2&gt;
+&lt;h3 id=&#34;konsola-curl-1&#34;&gt;konsola - curl&lt;/h3&gt;
 
 &lt;p&gt;Systemy produkcyjne, a także Docker Machine, wystawiają API protokołem https na
 porcie TCP, domyślnie, o numerze &lt;code&gt;2376&lt;/code&gt;.
@@ -156,7 +157,7 @@ przekazywania klucza i certyfikatu.&lt;/p&gt;
 
 &lt;p&gt;Zapytanie się powiodło. Na Docker Machine działa jeden kontener.&lt;/p&gt;
 
-&lt;h2 id=&#34;go-engine-api-1&#34;&gt;Go - engine-api&lt;/h2&gt;
+&lt;h3 id=&#34;go-engine-api-1&#34;&gt;Go - engine-api&lt;/h3&gt;
 
 &lt;p&gt;Przetestujmy to samo z Go. Sprawę ułatwia &lt;code&gt;NewEnvClient&lt;/code&gt;. Dane do połączenia
 brane są ze zmiennych środowiskowych.&lt;/p&gt;
