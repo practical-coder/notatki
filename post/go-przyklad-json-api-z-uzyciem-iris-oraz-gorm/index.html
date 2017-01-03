@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.16" />
+  <meta name="generator" content="Hugo 0.18.1" />
 
   <title>Go przykład json api z użyciem Iris oraz GORM &middot; Notatki</title>
 
@@ -21,13 +21,13 @@
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://practical-coder.github.io/notatki/css/side-menu-old-ie.css">
+  <link rel="stylesheet" href="https://practical-coder.github.io/css/side-menu-old-ie.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://practical-coder.github.io/notatki/css/side-menu.css">
+  <link rel="stylesheet" href="https://practical-coder.github.io/css/side-menu.css">
   <!--<![endif]-->
 
-  <link rel="stylesheet" href="https://practical-coder.github.io/notatki/css/blackburn.css">
+  <link rel="stylesheet" href="https://practical-coder.github.io/css/blackburn.css">
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -44,7 +44,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-  <link rel="shortcut icon" href="https://practical-coder.github.io/notatki/img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="https://practical-coder.github.io/img/favicon.ico" type="image/x-icon" />
 
 </head>
 
@@ -66,25 +66,25 @@
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/"><i class='fa fa-home fa-fw'></i>Home</a>
+          <a class="pure-menu-link" href="https://practical-coder.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/categories/"><i class='fa fa-sitemap fa-fw'></i>Categories</a>
+          <a class="pure-menu-link" href="https://practical-coder.github.io/categories/"><i class='fa fa-sitemap fa-fw'></i>Categories</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+          <a class="pure-menu-link" href="https://practical-coder.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
       
         </li>
       
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://practical-coder.github.io/notatki/tags/"><i class='fa fa-tags fa-fw'></i>Tags</a>
+          <a class="pure-menu-link" href="https://practical-coder.github.io/tags/"><i class='fa fa-tags fa-fw'></i>Tags</a>
       
         </li>
       
@@ -189,15 +189,15 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/go">go</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/go">go</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/golang">golang</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/golang">golang</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/iris">iris</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/iris">iris</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/gorm">gorm</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/gorm">gorm</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/notatki/tags/pl">pl</a>
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/pl">pl</a>
     
   </div>
   
@@ -205,16 +205,14 @@
 
 </div>
 
-  
-
-<h2 id="organizacja-kodu">Organizacja kodu</h2>
+  <h2 id="organizacja-kodu">Organizacja kodu</h2>
 
 <p>Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
 PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
 do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
-wykorzystany zostanie framework Iris.</p>
+wykorzystany zostanie framework Iris.
 
-<p>Struktura plików aplikacji:</p>
+Struktura plików aplikacji:</p>
 
 <pre><code class="language-bash">notes (master) $ tree
 .
@@ -461,18 +459,17 @@ całkowitego, odczytanie formatu json z body zapytania POST, zwrócenie jsona
 z odpowiednim nagłówkiem statusu i wiele wiele innych standardowych operacji
 staje się dużo łatwiejszych.</p>
 
-
   
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/">Historia poleceń, czas wykonania komendy</a>
+      <a href="https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/">Historia poleceń, czas wykonania komendy</a>
     </nav>
     
   </div>
@@ -482,13 +479,13 @@ staje się dużo łatwiejszych.</p>
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/">Docker Remote API - poligon</a>
+      <a href="https://practical-coder.github.io/post/docker-remote-api-poligon/">Docker Remote API - poligon</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/"><i class="fa fa-chevron-right"></i></a>
+    <a href="https://practical-coder.github.io/post/docker-remote-api-poligon/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -501,7 +498,7 @@ staje się dużo łatwiejszych.</p>
 
 </div>
 </div>
-<script src="https://practical-coder.github.io/notatki/js/ui.js"></script>
+<script src="https://practical-coder.github.io/js/ui.js"></script>
 
 
 

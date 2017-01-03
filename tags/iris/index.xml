@@ -2,30 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Iris on Notatki</title>
-    <link>https://practical-coder.github.io/notatki/tags/iris/</link>
+    <link>https://practical-coder.github.io/tags/iris/index.xml</link>
     <description>Recent content in Iris on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sun, 19 Jun 2016 18:59:26 +0200</lastBuildDate>
-    <atom:link href="https://practical-coder.github.io/notatki/tags/iris/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://practical-coder.github.io/tags/iris/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go przykład json api z użyciem Iris oraz GORM</title>
-      <link>https://practical-coder.github.io/notatki/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</link>
+      <link>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</link>
       <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</guid>
-      <description>
-
-&lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
+      <guid>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</guid>
+      <description>&lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
 
 &lt;p&gt;Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
 PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
 do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
-wykorzystany zostanie framework Iris.&lt;/p&gt;
+wykorzystany zostanie framework Iris.
 
-&lt;p&gt;Struktura plików aplikacji:&lt;/p&gt;
+Struktura plików aplikacji:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;notes (master) $ tree
 .
@@ -270,8 +267,7 @@ przyjmują dwa parametry, request oraz response. W Iris to jest tylko jeden
 wskaźnik na kontekst. Odczytanie parametru w url, konwersja do typu
 całkowitego, odczytanie formatu json z body zapytania POST, zwrócenie jsona
 z odpowiednim nagłówkiem statusu i wiele wiele innych standardowych operacji
-staje się dużo łatwiejszych.&lt;/p&gt;
-</description>
+staje się dużo łatwiejszych.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -2,27 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Notatki</title>
-    <link>https://practical-coder.github.io/notatki/post/</link>
+    <link>https://practical-coder.github.io/post/index.xml</link>
     <description>Recent content in Posts on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
     <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate>
-    <atom:link href="https://practical-coder.github.io/notatki/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://practical-coder.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Docker Remote API - poligon</title>
-      <link>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</link>
+      <link>https://practical-coder.github.io/post/docker-remote-api-poligon/</link>
       <pubDate>Sat, 16 Jul 2016 22:35:19 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</guid>
-      <description>
-
-&lt;h2 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h2&gt;
+      <guid>https://practical-coder.github.io/post/docker-remote-api-poligon/</guid>
+      <description>&lt;h2 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h2&gt;
 
 &lt;p&gt;Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
 Docker Remote API używając gniazda &lt;code&gt;/var/run/docker.sock&lt;/code&gt;. Podobnie jest
-w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.&lt;/p&gt;
+w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.
+&lt;/p&gt;
 
 &lt;h3 id=&#34;konsola-curl&#34;&gt;konsola - curl&lt;/h3&gt;
 
@@ -206,26 +205,23 @@ $ ./dockering
 28884f52d089b869559b3305f1fb1c6c450d69be76f3bb56fbb691bd7b6bcf65 [/hungry_tesla] 1467147773 szuka_dev [] exited Exited (2) 2 weeks ago
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Otrzymaliśmy dane o kontenerze na Docker Machine. Wszystko poszło zgodnie z planem.&lt;/p&gt;
-</description>
+&lt;p&gt;Otrzymaliśmy dane o kontenerze na Docker Machine. Wszystko poszło zgodnie z planem.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Go przykład json api z użyciem Iris oraz GORM</title>
-      <link>https://practical-coder.github.io/notatki/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</link>
+      <link>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</link>
       <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</guid>
-      <description>
-
-&lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
+      <guid>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</guid>
+      <description>&lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
 
 &lt;p&gt;Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
 PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
 do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
-wykorzystany zostanie framework Iris.&lt;/p&gt;
+wykorzystany zostanie framework Iris.
 
-&lt;p&gt;Struktura plików aplikacji:&lt;/p&gt;
+Struktura plików aplikacji:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;notes (master) $ tree
 .
@@ -470,31 +466,32 @@ przyjmują dwa parametry, request oraz response. W Iris to jest tylko jeden
 wskaźnik na kontekst. Odczytanie parametru w url, konwersja do typu
 całkowitego, odczytanie formatu json z body zapytania POST, zwrócenie jsona
 z odpowiednim nagłówkiem statusu i wiele wiele innych standardowych operacji
-staje się dużo łatwiejszych.&lt;/p&gt;
-</description>
+staje się dużo łatwiejszych.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Historia poleceń, czas wykonania komendy</title>
-      <link>https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/</link>
+      <link>https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/</link>
       <pubDate>Sun, 19 Jun 2016 18:57:32 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/</guid>
+      <guid>https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/</guid>
       <description>&lt;p&gt;Domyślnie pierwsza kolumna wpisu historii powłoki zawiera tylko id wykonanej komendy. Nie ma jednak informacji o czasie jej wykonania.
 Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową &lt;strong&gt;HISTTIMEFORMAT&lt;/strong&gt;:&lt;/p&gt;
 
+&lt;p&gt;&lt;/p&gt;
+
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HISTTIMEFORMAT=&#39;%H:%M:%S %d-%m-%Y  &#39;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
       <title>OS X usługi nasłuchujące</title>
-      <link>https://practical-coder.github.io/notatki/post/osx-uslugi-nasluchujace/</link>
+      <link>https://practical-coder.github.io/post/osx-uslugi-nasluchujace/</link>
       <pubDate>Sun, 19 Jun 2016 18:55:16 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/osx-uslugi-nasluchujace/</guid>
-      <description>&lt;p&gt;W OS X polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:&lt;/p&gt;
+      <guid>https://practical-coder.github.io/post/osx-uslugi-nasluchujace/</guid>
+      <description>&lt;p&gt;W OS X polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:
+&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo lsof -i tcp -nP -stcp:listen
 &lt;/code&gt;&lt;/pre&gt;
@@ -539,16 +536,15 @@ tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:65432           0.0.0.0:*               LISTEN      9137/memcached
 tcp6       0      0 :::22                   :::*                    LISTEN      17504/sshd
 tcp6       0      0 :::65432                :::*                    LISTEN      9137/memcached
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
       <title>Vim przywrócenie autouzupełniania</title>
-      <link>https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/</link>
+      <link>https://practical-coder.github.io/post/vim-przywrocenie-autouzupelniania/</link>
       <pubDate>Sun, 19 Jun 2016 18:53:16 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/</guid>
+      <guid>https://practical-coder.github.io/post/vim-przywrocenie-autouzupelniania/</guid>
       <description>&lt;p&gt;Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
 przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.&lt;/p&gt;
 
@@ -560,10 +556,10 @@ YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer
     
     <item>
       <title>Go: odbiorca metody, przykłady</title>
-      <link>https://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</link>
+      <link>https://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/</link>
       <pubDate>Sun, 19 Jun 2016 09:03:31 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
+      <guid>https://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
       <description>&lt;p&gt;W Go po słowie kluczowym &lt;strong&gt;&lt;code&gt;func&lt;/code&gt;&lt;/strong&gt;, a przed nazwą metody, możemy określić jej odbiorcę.
 Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość.
 W metodach &lt;strong&gt;&lt;code&gt;Len()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;Cap()&lt;/code&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;code&gt;IsEmpty()&lt;/code&gt;&lt;/strong&gt; oraz &lt;strong&gt;&lt;code&gt;Top()&lt;/code&gt;&lt;/strong&gt; odbiorcą jest &lt;strong&gt;&lt;code&gt;Stack&lt;/code&gt;&lt;/strong&gt;. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu.
@@ -616,10 +612,10 @@ func (stack *Stack) Pop() (interface{}, error) {
     
     <item>
       <title>Testing notes with curl</title>
-      <link>https://practical-coder.github.io/notatki/post/testing-notes-with-curl/</link>
+      <link>https://practical-coder.github.io/post/testing-notes-with-curl/</link>
       <pubDate>Sun, 19 Jun 2016 08:11:03 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/testing-notes-with-curl/</guid>
+      <guid>https://practical-coder.github.io/post/testing-notes-with-curl/</guid>
       <description>&lt;p&gt;To test creating notes with api, use sample &lt;code&gt;note.json&lt;/code&gt; in main
 directory and post it with curl:&lt;/p&gt;
 

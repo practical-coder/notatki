@@ -2,35 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bash on Notatki</title>
-    <link>https://practical-coder.github.io/notatki/tags/bash/</link>
+    <link>https://practical-coder.github.io/tags/bash/index.xml</link>
     <description>Recent content in Bash on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sun, 19 Jun 2016 18:57:32 +0200</lastBuildDate>
-    <atom:link href="https://practical-coder.github.io/notatki/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://practical-coder.github.io/tags/bash/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Historia poleceń, czas wykonania komendy</title>
-      <link>https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/</link>
+      <link>https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/</link>
       <pubDate>Sun, 19 Jun 2016 18:57:32 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/</guid>
+      <guid>https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/</guid>
       <description>&lt;p&gt;Domyślnie pierwsza kolumna wpisu historii powłoki zawiera tylko id wykonanej komendy. Nie ma jednak informacji o czasie jej wykonania.
 Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową &lt;strong&gt;HISTTIMEFORMAT&lt;/strong&gt;:&lt;/p&gt;
 
+&lt;p&gt;&lt;/p&gt;
+
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;HISTTIMEFORMAT=&#39;%H:%M:%S %d-%m-%Y  &#39;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
       <title>OS X usługi nasłuchujące</title>
-      <link>https://practical-coder.github.io/notatki/post/osx-uslugi-nasluchujace/</link>
+      <link>https://practical-coder.github.io/post/osx-uslugi-nasluchujace/</link>
       <pubDate>Sun, 19 Jun 2016 18:55:16 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/osx-uslugi-nasluchujace/</guid>
-      <description>&lt;p&gt;W OS X polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:&lt;/p&gt;
+      <guid>https://practical-coder.github.io/post/osx-uslugi-nasluchujace/</guid>
+      <description>&lt;p&gt;W OS X polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:
+&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo lsof -i tcp -nP -stcp:listen
 &lt;/code&gt;&lt;/pre&gt;
@@ -75,8 +76,7 @@ tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:65432           0.0.0.0:*               LISTEN      9137/memcached
 tcp6       0      0 :::22                   :::*                    LISTEN      17504/sshd
 tcp6       0      0 :::65432                :::*                    LISTEN      9137/memcached
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

@@ -2,27 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on Notatki</title>
-    <link>https://practical-coder.github.io/notatki/tags/docker/</link>
+    <link>https://practical-coder.github.io/tags/docker/index.xml</link>
     <description>Recent content in Docker on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate>
-    <atom:link href="https://practical-coder.github.io/notatki/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://practical-coder.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Docker Remote API - poligon</title>
-      <link>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</link>
+      <link>https://practical-coder.github.io/post/docker-remote-api-poligon/</link>
       <pubDate>Sat, 16 Jul 2016 22:35:19 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</guid>
-      <description>
-
-&lt;h2 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h2&gt;
+      <guid>https://practical-coder.github.io/post/docker-remote-api-poligon/</guid>
+      <description>&lt;h2 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h2&gt;
 
 &lt;p&gt;Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
 Docker Remote API używając gniazda &lt;code&gt;/var/run/docker.sock&lt;/code&gt;. Podobnie jest
-w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.&lt;/p&gt;
+w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.
+&lt;/p&gt;
 
 &lt;h3 id=&#34;konsola-curl&#34;&gt;konsola - curl&lt;/h3&gt;
 
@@ -206,8 +204,7 @@ $ ./dockering
 28884f52d089b869559b3305f1fb1c6c450d69be76f3bb56fbb691bd7b6bcf65 [/hungry_tesla] 1467147773 szuka_dev [] exited Exited (2) 2 weeks ago
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Otrzymaliśmy dane o kontenerze na Docker Machine. Wszystko poszło zgodnie z planem.&lt;/p&gt;
-</description>
+&lt;p&gt;Otrzymaliśmy dane o kontenerze na Docker Machine. Wszystko poszło zgodnie z planem.&lt;/p&gt;</description>
     </item>
     
   </channel>

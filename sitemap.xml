@@ -2,43 +2,168 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://practical-coder.github.io/notatki/</loc>
+    <loc>https://practical-coder.github.io/post/docker-remote-api-poligon/</loc>
     <lastmod>2016-07-16T22:35:19+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://practical-coder.github.io/notatki/post/docker-remote-api-poligon/</loc>
-    <lastmod>2016-07-16T22:35:19+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://practical-coder.github.io/notatki/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</loc>
+    <loc>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</loc>
     <lastmod>2016-06-19T18:59:26+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://practical-coder.github.io/notatki/post/historia-polecen-czas-wykonania-komendy/</loc>
+    <loc>https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/</loc>
     <lastmod>2016-06-19T18:57:32+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://practical-coder.github.io/notatki/post/osx-uslugi-nasluchujace/</loc>
+    <loc>https://practical-coder.github.io/post/osx-uslugi-nasluchujace/</loc>
     <lastmod>2016-06-19T18:55:16+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://practical-coder.github.io/notatki/post/vim-przywrocenie-autouzupelniania/</loc>
+    <loc>https://practical-coder.github.io/post/vim-przywrocenie-autouzupelniania/</loc>
     <lastmod>2016-06-19T18:53:16+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://practical-coder.github.io/notatki/post/go-odbiorca-metody-przyk%C5%82ady/</loc>
+    <loc>https://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/</loc>
     <lastmod>2016-06-19T09:03:31+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://practical-coder.github.io/notatki/post/testing-notes-with-curl/</loc>
+    <loc>https://practical-coder.github.io/post/testing-notes-with-curl/</loc>
     <lastmod>2016-06-19T08:11:03+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/categories/bash/</loc>
+    <lastmod>2016-06-19T18:57:32+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/bash/</loc>
+    <lastmod>2016-06-19T18:57:32+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/categories/curl/</loc>
+    <lastmod>2016-06-19T08:11:03+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/curl/</loc>
+    <lastmod>2016-06-19T08:11:03+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/categories/docker/</loc>
+    <lastmod>2016-07-16T22:35:19+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/docker/</loc>
+    <lastmod>2016-07-16T22:35:19+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/en/</loc>
+    <lastmod>2016-06-19T08:11:03+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/categories/go/</loc>
+    <lastmod>2016-07-16T22:35:19+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/go/</loc>
+    <lastmod>2016-07-16T22:35:19+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/golang/</loc>
+    <lastmod>2016-06-19T18:59:26+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/gorm/</loc>
+    <lastmod>2016-06-19T18:59:26+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/iris/</loc>
+    <lastmod>2016-06-19T18:59:26+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/lsof/</loc>
+    <lastmod>2016-06-19T18:55:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/</loc>
+    <lastmod>2016-07-16T22:35:19+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/categories/os-x/</loc>
+    <lastmod>2016-06-19T18:55:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/osx/</loc>
+    <lastmod>2016-06-19T18:55:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/pl/</loc>
+    <lastmod>2016-06-19T18:59:26+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/post/</loc>
+    <lastmod>2016-07-16T22:35:19+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/categories/vim/</loc>
+    <lastmod>2016-06-19T18:53:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://practical-coder.github.io/tags/vim/</loc>
+    <lastmod>2016-06-19T18:53:16+02:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>
