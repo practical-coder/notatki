@@ -2,12 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on Notatki</title>
-    <link>https://practical-coder.github.io/tags/vim/index.xml</link>
+    <link>https://practical-coder.github.io/tags/vim/</link>
     <description>Recent content in Vim on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <atom:link href="https://practical-coder.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2016 18:53:16 +0200</lastBuildDate>
+    
+	<atom:link href="https://practical-coder.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Vim przywrócenie autouzupełniania</title>
@@ -15,13 +18,8 @@
       <pubDate>Sun, 19 Jun 2016 18:53:16 +0200</pubDate>
       
       <guid>https://practical-coder.github.io/post/vim-przywrocenie-autouzupelniania/</guid>
-      <description>&lt;p&gt;Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
-przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;~ $ cd  .vim/bundle/YouCompleteMe/
-YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.
+~ $ cd .vim/bundle/YouCompleteMe/ YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer  </description>
     </item>
     
   </channel>
