@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on Notatki</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate>
-    
-	<atom:link href="https://practical-coder.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate><atom:link href="https://practical-coder.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Remote API - poligon</title>
       <link>https://practical-coder.github.io/post/docker-remote-api-poligon/</link>
@@ -19,11 +15,9 @@
       
       <guid>https://practical-coder.github.io/post/docker-remote-api-poligon/</guid>
       <description>&lt;h2 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h2&gt;
-
 &lt;p&gt;Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
 Docker Remote API używając gniazda &lt;code&gt;/var/run/docker.sock&lt;/code&gt;. Podobnie jest
-w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.
-&lt;/p&gt;</description>
+w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.&lt;/p&gt;</description>
     </item>
     
   </channel>

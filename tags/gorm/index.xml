@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gorm on Notatki</title>
+    <title>gorm on Notatki</title>
     <link>https://practical-coder.github.io/tags/gorm/</link>
-    <description>Recent content in Gorm on Notatki</description>
+    <description>Recent content in gorm on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sun, 19 Jun 2016 18:59:26 +0200</lastBuildDate>
-    
-	<atom:link href="https://practical-coder.github.io/tags/gorm/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 19 Jun 2016 18:59:26 +0200</lastBuildDate><atom:link href="https://practical-coder.github.io/tags/gorm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go przykład json api z użyciem Iris oraz GORM</title>
       <link>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</link>
@@ -19,13 +15,10 @@
       
       <guid>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</guid>
       <description>&lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
-
 &lt;p&gt;Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
 PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
 do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
-wykorzystany zostanie framework Iris.
-
-Struktura plików aplikacji:&lt;/p&gt;</description>
+wykorzystany zostanie framework Iris.&lt;/p&gt;</description>
     </item>
     
   </channel>

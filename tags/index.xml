@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Notatki</title>
@@ -7,94 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sun, 19 Jun 2016 18:57:32 +0200</lastBuildDate>
-    
-	<atom:link href="https://practical-coder.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 26 Jun 2018 20:10:45 +0200</lastBuildDate><atom:link href="https://practical-coder.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bash</title>
-      <link>https://practical-coder.github.io/tags/bash/</link>
-      <pubDate>Sun, 19 Jun 2016 18:57:32 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/bash/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Curl</title>
-      <link>https://practical-coder.github.io/tags/curl/</link>
-      <pubDate>Sun, 19 Jun 2016 08:11:03 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/curl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://practical-coder.github.io/tags/docker/</link>
-      <pubDate>Sat, 16 Jul 2016 22:35:19 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>En</title>
-      <link>https://practical-coder.github.io/tags/en/</link>
-      <pubDate>Sun, 19 Jun 2016 08:11:03 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/en/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://practical-coder.github.io/tags/go/</link>
-      <pubDate>Sat, 16 Jul 2016 22:35:19 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://practical-coder.github.io/tags/golang/</link>
-      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gorm</title>
-      <link>https://practical-coder.github.io/tags/gorm/</link>
-      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/gorm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Iris</title>
-      <link>https://practical-coder.github.io/tags/iris/</link>
-      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/iris/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Lsof</title>
-      <link>https://practical-coder.github.io/tags/lsof/</link>
-      <pubDate>Sun, 19 Jun 2016 18:55:16 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/lsof/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Macos</title>
+      <title>macos</title>
       <link>https://practical-coder.github.io/tags/macos/</link>
       <pubDate>Tue, 26 Jun 2018 20:10:45 +0200</pubDate>
       
@@ -103,7 +18,7 @@
     </item>
     
     <item>
-      <title>Netstat</title>
+      <title>netstat</title>
       <link>https://practical-coder.github.io/tags/netstat/</link>
       <pubDate>Tue, 26 Jun 2018 20:10:45 +0200</pubDate>
       
@@ -112,16 +27,7 @@
     </item>
     
     <item>
-      <title>Pl</title>
-      <link>https://practical-coder.github.io/tags/pl/</link>
-      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
-      
-      <guid>https://practical-coder.github.io/tags/pl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Route</title>
+      <title>route</title>
       <link>https://practical-coder.github.io/tags/route/</link>
       <pubDate>Tue, 26 Jun 2018 20:10:45 +0200</pubDate>
       
@@ -130,11 +36,101 @@
     </item>
     
     <item>
-      <title>Vim</title>
+      <title>docker</title>
+      <link>https://practical-coder.github.io/tags/docker/</link>
+      <pubDate>Sat, 16 Jul 2016 22:35:19 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://practical-coder.github.io/tags/go/</link>
+      <pubDate>Sat, 16 Jul 2016 22:35:19 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://practical-coder.github.io/tags/golang/</link>
+      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gorm</title>
+      <link>https://practical-coder.github.io/tags/gorm/</link>
+      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/gorm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iris</title>
+      <link>https://practical-coder.github.io/tags/iris/</link>
+      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/iris/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pl</title>
+      <link>https://practical-coder.github.io/tags/pl/</link>
+      <pubDate>Sun, 19 Jun 2016 18:59:26 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/pl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>https://practical-coder.github.io/tags/bash/</link>
+      <pubDate>Sun, 19 Jun 2016 18:57:32 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lsof</title>
+      <link>https://practical-coder.github.io/tags/lsof/</link>
+      <pubDate>Sun, 19 Jun 2016 18:55:16 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/lsof/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vim</title>
       <link>https://practical-coder.github.io/tags/vim/</link>
       <pubDate>Sun, 19 Jun 2016 18:53:16 +0200</pubDate>
       
       <guid>https://practical-coder.github.io/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>curl</title>
+      <link>https://practical-coder.github.io/tags/curl/</link>
+      <pubDate>Sun, 19 Jun 2016 08:11:03 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/curl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>en</title>
+      <link>https://practical-coder.github.io/tags/en/</link>
+      <pubDate>Sun, 19 Jun 2016 08:11:03 +0200</pubDate>
+      
+      <guid>https://practical-coder.github.io/tags/en/</guid>
       <description></description>
     </item>
     

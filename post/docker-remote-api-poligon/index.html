@@ -5,19 +5,21 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Podstawy komunikacji z Docker Remote API.">
-  <meta name="generator" content="Hugo 0.42.1" />
+  <meta name="generator" content="Hugo 0.78.1" />
 
   <title>Docker Remote API - poligon &middot; Notatki</title>
 
+    
+
   
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
@@ -30,21 +32,30 @@
   <link rel="stylesheet" href="https://practical-coder.github.io/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/agate.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  
   <script>hljs.initHighlightingOnLoad();</script>
   
 
   <link rel="shortcut icon" href="https://practical-coder.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
 
 </head>
 
@@ -93,6 +104,24 @@
 
   <div class="pure-menu social">
   <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 
@@ -203,81 +232,63 @@
 </div>
 
   <h2 id="połączenie-z-gniazdem-unixowym">Połączenie z gniazdem unixowym</h2>
-
 <p>Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
 Docker Remote API używając gniazda <code>/var/run/docker.sock</code>. Podobnie jest
-w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.
-</p>
-
-<h3 id="konsola-curl">konsola - curl</h3>
-
+w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.</p>
+<h3 id="konsola---curl">konsola - curl</h3>
 <p>Do przetestowania odpowiedzi demona wykorzystujemy najpierw klienta <code>curl</code>:</p>
-
-<pre><code class="language-bash">$ curl -s --unix-socket /var/run/docker.sock http:/info | jq '.ContainersRunning'
-2
-</code></pre>
-
-<p>Za pomocą <code>jq</code> ograniczono odpowiedź <code>/info</code> do wartości klucza
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -s --unix-socket /var/run/docker.sock http:/info | jq <span style="color:#e6db74">&#39;.ContainersRunning&#39;</span>
+<span style="color:#ae81ff">2</span>
+</code></pre></div><p>Za pomocą <code>jq</code> ograniczono odpowiedź <code>/info</code> do wartości klucza
 <code>.ContainersRunning</code>, czyli <code>2</code>.
 Należy zwrócić uwagę na <code>http:/info</code> i pojedynczy znak <code>/</code>. Jeżeli przez
 pomyłkę użyjemy <code>http://info</code> dostaniemy odpowiedź:</p>
-
-<pre><code class="language-bash">$ curl -s --unix-socket /var/run/docker.sock http://info | jq
-</code></pre>
-
-<pre><code class="language-json">{
-  &quot;message&quot;: &quot;page not found&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -s --unix-socket /var/run/docker.sock http://info | jq
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;page not found&#34;</span>
 }
-</code></pre>
-
-<pre><code class="language-bash">$ curl -s --unix-socket /var/run/docker.sock http:/containers/json?limit=1 | jq
-</code></pre>
-
-<pre><code class="language-json">[
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -s --unix-socket /var/run/docker.sock http:/containers/json?limit<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> | jq
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
   {
-    &quot;Id&quot;: &quot;e0649129b761be2207627b0527ba17534180e4f0e74a4f2b0d6a1c9af29a445c&quot;,
-    &quot;Names&quot;: [
-      &quot;/romantic_colden&quot;
+    <span style="color:#f92672">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;e0649129b761be2207627b0527ba17534180e4f0e74a4f2b0d6a1c9af29a445c&#34;</span>,
+    <span style="color:#f92672">&#34;Names&#34;</span>: [
+      <span style="color:#e6db74">&#34;/romantic_colden&#34;</span>
     ],
-    &quot;Image&quot;: &quot;basics:v1&quot;,
-    &quot;ImageID&quot;: &quot;sha256:ff3eac843704765ab36cdd5e47d790c9fc131b7441e91a3e102d757241208684&quot;,
-    &quot;Command&quot;: &quot;/go/bin/basics_lin&quot;,
-    &quot;Created&quot;: 1468009653,
-    &quot;Ports&quot;: [],
-    &quot;Labels&quot;: {},
-    &quot;State&quot;: &quot;exited&quot;,
-    &quot;Status&quot;: &quot;Exited (0) 32 hours ago&quot;,
-    &quot;HostConfig&quot;: {
-      &quot;NetworkMode&quot;: &quot;default&quot;
+    <span style="color:#f92672">&#34;Image&#34;</span>: <span style="color:#e6db74">&#34;basics:v1&#34;</span>,
+    <span style="color:#f92672">&#34;ImageID&#34;</span>: <span style="color:#e6db74">&#34;sha256:ff3eac843704765ab36cdd5e47d790c9fc131b7441e91a3e102d757241208684&#34;</span>,
+    <span style="color:#f92672">&#34;Command&#34;</span>: <span style="color:#e6db74">&#34;/go/bin/basics_lin&#34;</span>,
+    <span style="color:#f92672">&#34;Created&#34;</span>: <span style="color:#ae81ff">1468009653</span>,
+    <span style="color:#f92672">&#34;Ports&#34;</span>: [],
+    <span style="color:#f92672">&#34;Labels&#34;</span>: {},
+    <span style="color:#f92672">&#34;State&#34;</span>: <span style="color:#e6db74">&#34;exited&#34;</span>,
+    <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Exited (0) 32 hours ago&#34;</span>,
+    <span style="color:#f92672">&#34;HostConfig&#34;</span>: {
+      <span style="color:#f92672">&#34;NetworkMode&#34;</span>: <span style="color:#e6db74">&#34;default&#34;</span>
     },
-    &quot;NetworkSettings&quot;: {
-      &quot;Networks&quot;: {
-        &quot;bridge&quot;: {
-          &quot;IPAMConfig&quot;: null,
-          &quot;Links&quot;: null,
-          &quot;Aliases&quot;: null,
-          &quot;NetworkID&quot;: &quot;85b9fda269593cd1af519f92593dd49027ed7cc97b4dbf8258498d43313ac3d7&quot;,
-          &quot;EndpointID&quot;: &quot;&quot;,
-          &quot;Gateway&quot;: &quot;&quot;,
-          &quot;IPAddress&quot;: &quot;&quot;,
-          &quot;IPPrefixLen&quot;: 0,
-          &quot;IPv6Gateway&quot;: &quot;&quot;,
-          &quot;GlobalIPv6Address&quot;: &quot;&quot;,
-          &quot;GlobalIPv6PrefixLen&quot;: 0,
-          &quot;MacAddress&quot;: &quot;&quot;
+    <span style="color:#f92672">&#34;NetworkSettings&#34;</span>: {
+      <span style="color:#f92672">&#34;Networks&#34;</span>: {
+        <span style="color:#f92672">&#34;bridge&#34;</span>: {
+          <span style="color:#f92672">&#34;IPAMConfig&#34;</span>: <span style="color:#66d9ef">null</span>,
+          <span style="color:#f92672">&#34;Links&#34;</span>: <span style="color:#66d9ef">null</span>,
+          <span style="color:#f92672">&#34;Aliases&#34;</span>: <span style="color:#66d9ef">null</span>,
+          <span style="color:#f92672">&#34;NetworkID&#34;</span>: <span style="color:#e6db74">&#34;85b9fda269593cd1af519f92593dd49027ed7cc97b4dbf8258498d43313ac3d7&#34;</span>,
+          <span style="color:#f92672">&#34;EndpointID&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+          <span style="color:#f92672">&#34;Gateway&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+          <span style="color:#f92672">&#34;IPAddress&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+          <span style="color:#f92672">&#34;IPPrefixLen&#34;</span>: <span style="color:#ae81ff">0</span>,
+          <span style="color:#f92672">&#34;IPv6Gateway&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+          <span style="color:#f92672">&#34;GlobalIPv6Address&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+          <span style="color:#f92672">&#34;GlobalIPv6PrefixLen&#34;</span>: <span style="color:#ae81ff">0</span>,
+          <span style="color:#f92672">&#34;MacAddress&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
         }
       }
     },
-    &quot;Mounts&quot;: []
+    <span style="color:#f92672">&#34;Mounts&#34;</span>: []
   }
 ]
-</code></pre>
-
-<h3 id="go-engine-api">Go - engine-api</h3>
-
+</code></pre></div><h3 id="go---engine-api">Go - engine-api</h3>
 <p>Teraz podobna operacja, tylko za pomocą engine-api, nie wypisujemy wszystkich
 informacji oraz używamy formatu tekstowego zamiast JSON:</p>
-
 <pre><code>package main
 
 import (
@@ -305,48 +316,28 @@ func main() {
 		fmt.Println(c.ID, c.Names, c.Created, c.Image, c.Ports, c.State, c.Status)
 	}
 }
-</code></pre>
-
-<p>Po skompilowaniu i uruchomieniu otrzymujemy:</p>
-
-<pre><code class="language-bash">$ ./dockering
-e0649129b761be2207627b0527ba17534180e4f0e74a4f2b0d6a1c9af29a445c [/romantic_colden] 1468009653 basics:v1 [] exited Exited (0) 32 hours ago
-</code></pre>
-
-<p>Bez rewelacji, ale sprawdziliśmy połączenie z poziomu Go, zawsze coś.</p>
-
+</code></pre><p>Po skompilowaniu i uruchomieniu otrzymujemy:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./dockering
+e0649129b761be2207627b0527ba17534180e4f0e74a4f2b0d6a1c9af29a445c <span style="color:#f92672">[</span>/romantic_colden<span style="color:#f92672">]</span> <span style="color:#ae81ff">1468009653</span> basics:v1 <span style="color:#f92672">[]</span> exited Exited <span style="color:#f92672">(</span>0<span style="color:#f92672">)</span> <span style="color:#ae81ff">32</span> hours ago
+</code></pre></div><p>Bez rewelacji, ale sprawdziliśmy połączenie z poziomu Go, zawsze coś.</p>
 <h2 id="połączenie-na-porcie-tcp-używając-tls">Połączenie na porcie TCP używając TLS</h2>
-
-<h3 id="konsola-curl-1">konsola - curl</h3>
-
+<h3 id="konsola---curl-1">konsola - curl</h3>
 <p>Systemy produkcyjne, a także Docker Machine, wystawiają API protokołem https na
 porcie TCP, domyślnie, o numerze <code>2376</code>.
 Na próbę połączmy się z API lokalnego Docker Machine, jeżeli środowisko jest prawidłowo
 skonfigurowane powinna być dostępna zmienna <code>DOCKER_CERT_PATH</code>, domyślny adres IP Docker Machine to <code>192.168.99.100</code>.</p>
-
-<pre><code class="language-bash">$ curl --cert $DOCKER_CERT_PATH/cert.pem --key $DOCKER_CERT_PATH/key.pem https://192.168.99.100:2376/info
-curl: (58) SSL: Can't load the certificate &quot;/Users/jac/.docker/machine/machines/default/cert.pem&quot; and its private key: OSStatus -25299
-</code></pre>
-
-<p>Niestety jest problem, jedno z proponowanych rozwiązań, to inny format
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl --cert $DOCKER_CERT_PATH/cert.pem --key $DOCKER_CERT_PATH/key.pem https://192.168.99.100:2376/info
+curl: <span style="color:#f92672">(</span>58<span style="color:#f92672">)</span> SSL: Can<span style="color:#960050;background-color:#1e0010">&#39;</span>t load the certificate <span style="color:#e6db74">&#34;/Users/jac/.docker/machine/machines/default/cert.pem&#34;</span> and its private key: OSStatus -25299
+</code></pre></div><p>Niestety jest problem, jedno z proponowanych rozwiązań, to inny format
 przekazywania klucza i certyfikatu.</p>
-
-<pre><code class="language-bash">$ openssl pkcs12 -export -in $DOCKER_CERT_PATH/cert.pem -inkey $DOCKER_CERT_PATH/key.pem -out $DOCKER_CERT_PATH/cert.pfx -password pass:niejawne
-</code></pre>
-
-<p>Przetestujmy czy to działa:</p>
-
-<pre><code class="language-bash">$ curl -s --cert $DOCKER_CERT_PATH/cert.pfx --cacert $DOCKER_CERT_PATH/ca.pem --pass niejawne https://192.168.99.100:2376/info | jq '.ContainersRunning'
-1
-</code></pre>
-
-<p>Zapytanie się powiodło. Na Docker Machine działa jeden kontener.</p>
-
-<h3 id="go-engine-api-1">Go - engine-api</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ openssl pkcs12 -export -in $DOCKER_CERT_PATH/cert.pem -inkey $DOCKER_CERT_PATH/key.pem -out $DOCKER_CERT_PATH/cert.pfx -password pass:niejawne
+</code></pre></div><p>Przetestujmy czy to działa:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -s --cert $DOCKER_CERT_PATH/cert.pfx --cacert $DOCKER_CERT_PATH/ca.pem --pass niejawne https://192.168.99.100:2376/info | jq <span style="color:#e6db74">&#39;.ContainersRunning&#39;</span>
+<span style="color:#ae81ff">1</span>
+</code></pre></div><p>Zapytanie się powiodło. Na Docker Machine działa jeden kontener.</p>
+<h3 id="go---engine-api-1">Go - engine-api</h3>
 <p>Przetestujmy to samo z Go. Sprawę ułatwia <code>NewEnvClient</code>. Dane do połączenia
 brane są ze zmiennych środowiskowych.</p>
-
 <pre><code>package main
 
 import (
@@ -379,19 +370,54 @@ func main() {
 	}
 }
 
-</code></pre>
-
-<p>Docker dla Mac na lokalnym używa API w wersj v1.24.
+</code></pre><p>Docker dla Mac na lokalnym używa API w wersj v1.24.
 Docker Machine na lokalnym systemie jest w starszej wersji API: v1.23. W kodzie ustawiamy odpowiednią
 zmienną środowiskową, tak, żeby wersja klienta nie była nowsza niż wersja serwera.
 Po skompilowaniu, uruchamiamy:</p>
-
 <pre><code>$ go build
 $ ./dockering
 28884f52d089b869559b3305f1fb1c6c450d69be76f3bb56fbb691bd7b6bcf65 [/hungry_tesla] 1467147773 szuka_dev [] exited Exited (2) 2 weeks ago
-</code></pre>
+</code></pre><p>Otrzymaliśmy dane o kontenerze na Docker Machine. Wszystko poszło zgodnie z planem.</p>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fdocker-remote-api-poligon%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fpractical-coder.github.io%2fpost%2fdocker-remote-api-poligon%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fdocker-remote-api-poligon%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fdocker-remote-api-poligon%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fdocker-remote-api-poligon%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fdocker-remote-api-poligon%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
 
-<p>Otrzymaliśmy dane o kontenerze na Docker Machine. Wszystko poszło zgodnie z planem.</p>
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -433,8 +459,16 @@ $ ./dockering
 </div>
 </div>
 <script src="https://practical-coder.github.io/js/ui.js"></script>
+<script src="https://practical-coder.github.io/js/menus.js"></script>
 
 
+
+
+
+
+<script src="https://practical-coder.github.io/js/math-code.js"></script>
+  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
 
 
 </body>

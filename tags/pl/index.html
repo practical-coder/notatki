@@ -5,19 +5,21 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.42.1" />
+  <meta name="generator" content="Hugo 0.78.1" />
 
-  <title>Pl &middot; Notatki</title>
+  <title>pl &middot; Notatki</title>
+
+    
 
   
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
@@ -30,23 +32,33 @@
   <link rel="stylesheet" href="https://practical-coder.github.io/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
   
-  <link rel="alternate" type="application/rss+xml" title="Notatki" href="https://practical-coder.github.io/tags/pl/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Notatki"
+    href='https://practical-coder.github.io/tags/pl/index.xml' />
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/agate.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  
   <script>hljs.initHighlightingOnLoad();</script>
   
 
   <link rel="shortcut icon" href="https://practical-coder.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
 
 </head>
 
@@ -98,8 +110,27 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href="https://practical-coder.github.io/tags/pl/index.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      <a class="pure-menu-link" href='https://practical-coder.github.io/tags/pl/index.xml'><i
+          class="fas fa-rss"></i>RSS</a>
     </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -173,7 +204,7 @@
 
 
 <div class="header">
-  <h1>Pl</h1>
+  <h1>pl</h1>
 </div>
 
 <div class="content">
@@ -219,13 +250,10 @@
 
   <p>
   <h2 id="organizacja-kodu">Organizacja kodu</h2>
-
 <p>Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
 PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
 do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
-wykorzystany zostanie framework Iris.
-
-Struktura plików aplikacji:</p>
+wykorzystany zostanie framework Iris.</p>
   </p>
 
   
@@ -272,8 +300,6 @@ Struktura plików aplikacji:</p>
   <p>
   <p>Domyślnie pierwsza kolumna wpisu historii powłoki zawiera tylko id wykonanej komendy. Nie ma jednak informacji o czasie jej wykonania.
 Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową <strong>HISTTIMEFORMAT</strong>:</p>
-
-<p></p>
   </p>
 
   
@@ -322,8 +348,7 @@ Aby taką informację dodać, należy ustawić format czasu jaki powinien być w
   </header>
 
   <p>
-  <p>W systemie Macos polecenie <strong><code>netstat</code></strong> zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia <strong><code>lsof</code></strong>. Przykładowo:
-</p>
+  <p>W systemie Macos polecenie <strong><code>netstat</code></strong> zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia <strong><code>lsof</code></strong>. Przykładowo:</p>
   </p>
 
   
@@ -369,7 +394,7 @@ Aby taką informację dodać, należy ustawić format czasu jaki powinien być w
 
   <p>
   Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.
-~ $ cd .vim/bundle/YouCompleteMe/ YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer  
+~ $ cd .vim/bundle/YouCompleteMe/ YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer 
   </p>
 
   
@@ -378,7 +403,7 @@ Aby taką informację dodać, należy ustawić format czasu jaki powinien być w
   
     <article>
   <header>
-    <h2><a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/">Go: odbiorca metody, przykłady</a></h2>
+    <h2><a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/">Go: odbiorca metody, przykłady</a></h2>
 
     <div class="post-meta">
 
@@ -418,7 +443,7 @@ package stack import &quot;errors&quot; type Stack []interface{} func (stack Sta
 
   
   <footer>
-    <a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+    <a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
@@ -429,6 +454,11 @@ package stack import &quot;errors&quot; type Stack []interface{} func (stack Sta
 </div>
 </div>
 <script src="https://practical-coder.github.io/js/ui.js"></script>
+<script src="https://practical-coder.github.io/js/menus.js"></script>
+
+
+
+
 
 
 

@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.78.1" />
 
-  <title>curl &middot; Notatki</title>
+  <title>Notatki</title>
 
     
 
@@ -43,7 +43,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="Notatki"
-    href='https://practical-coder.github.io/tags/curl/index.xml' />
+    href='https://practical-coder.github.io/index.xml' />
   
 
   
@@ -110,7 +110,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://practical-coder.github.io/tags/curl/index.xml'><i
+      <a class="pure-menu-link" href='https://practical-coder.github.io/index.xml'><i
           class="fas fa-rss"></i>RSS</a>
     </li>
     
@@ -204,10 +204,101 @@
 
 
 <div class="header">
-  <h1>curl</h1>
+  <h1>Notatki</h1>
+  <h2>Pamięci trzeba czasem pomóc.</h2>
 </div>
 
 <div class="content">
+  
+    <article>
+  <header>
+    <h2><a href="https://practical-coder.github.io/post/vim-przywrocenie-autouzupelniania/">Vim przywrócenie autouzupełniania</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>19/06/2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/vim">vim</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/pl">pl</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.
+~ $ cd .vim/bundle/YouCompleteMe/ YouCompleteMe (master) $ ./install.py --clang-completer --gocode-completer 
+  </p>
+
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/">Go: odbiorca metody, przykłady</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>19/06/2016</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/go">go</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/golang">golang</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/pl">pl</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  W Go po słowie kluczowym func, a przed nazwą metody, możemy określić jej odbiorcę. Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość. W metodach Len(), Cap(), IsEmpty() oraz Top() odbiorcą jest Stack. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu. Natomiast jeżeli metoda modyfikuje obiekt, wtedy odbiorca określany jest wskaźnikiem do obiektu. Tak się dzieje w metodach Push() i Pop(). Tam odbiorcą jest *Stack.
+package stack import &quot;errors&quot; type Stack []interface{} func (stack Stack) Len() int { return len(stack) } func (stack Stack) Cap() int { return cap(stack) } func (stack Stack) IsEmpty() bool { return len(stack) == 0 } func (stack Stack) Top() (interface{}, error) { if stack.
+  </p>
+
+  
+  <footer>
+    <a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
     <article>
   <header>
@@ -251,6 +342,22 @@ cat note.json | c -XPOST http://localhost:8181/notes -d @-
 </article>
 
   
+
+  
+
+
+<nav class="pagination" role="pagination">
+  
+  <a href="https://practical-coder.github.io/"><i class="fa fa-chevron-left"></i></a>
+  
+  <span>&nbsp;2 / 2&nbsp;</span>
+  
+  <i class="fa fa-chevron-right"></i>
+  
+</nav>
+
+
+
 </div>
 
 </div>
@@ -267,3 +374,4 @@ cat note.json | c -XPOST http://localhost:8181/notes -d @-
 
 </body>
 </html>
+

@@ -5,19 +5,21 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.42.1" />
+  <meta name="generator" content="Hugo 0.78.1" />
 
   <title>Go przykład json api z użyciem Iris oraz GORM &middot; Notatki</title>
 
+    
+
   
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
 
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
   <!--<![endif]-->
 
   <!--[if lte IE 8]>
@@ -30,21 +32,30 @@
   <link rel="stylesheet" href="https://practical-coder.github.io/css/blackburn.css">
 
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
   
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
   
 
   
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/agate.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  
   <script>hljs.initHighlightingOnLoad();</script>
   
 
   <link rel="shortcut icon" href="https://practical-coder.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
 
 </head>
 
@@ -93,6 +104,24 @@
 
   <div class="pure-menu social">
   <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 
@@ -206,15 +235,12 @@
 </div>
 
   <h2 id="organizacja-kodu">Organizacja kodu</h2>
-
 <p>Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
 PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
 do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
-wykorzystany zostanie framework Iris.
-
-Struktura plików aplikacji:</p>
-
-<pre><code class="language-bash">notes (master) $ tree
+wykorzystany zostanie framework Iris.</p>
+<p>Struktura plików aplikacji:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">notes <span style="color:#f92672">(</span>master<span style="color:#f92672">)</span> $ tree
 .
 ├── db
 │   └── pg
@@ -227,13 +253,10 @@ Struktura plików aplikacji:</p>
     ├── controller.go
     └── model.go
 
-4 directories, 6 files
-</code></pre>
-
-<p>Plik <strong><code>main.go</code></strong> stanowi punkt wejścia aplikacji. Definiowane są tam
+<span style="color:#ae81ff">4</span> directories, <span style="color:#ae81ff">6</span> files
+</code></pre></div><p>Plik <strong><code>main.go</code></strong> stanowi punkt wejścia aplikacji. Definiowane są tam
 mapowania ścieżek url na odpowiednie metody. Uruchamiany jest tam też
 serwer iris z możliwością zmiany domyślnego portu flagą z lini poleceń.</p>
-
 <pre><code>package main
 
 import (
@@ -263,12 +286,9 @@ func main() {
     iris.Listen(&quot;:&quot; + port)
 }
 </code></pre>
-
 <h2 id="połączenie-z-bazą-danych">Połączenie z bazą danych</h2>
-
 <p>W pliku <strong><code>db/pg/pg.go</code></strong> otwieramy połączenie z bazą używając jako ORM
 bibilioteki <strong>GORM</strong> oraz sterownika bazy PostgreSQL, <strong>pq</strong> :</p>
-
 <pre><code>package pg
 
 import (
@@ -289,16 +309,11 @@ func init() {
     }
 }
 </code></pre>
-
 <h2 id="paczka-note">Paczka note</h2>
-
 <p>Katalog <strong>/note</strong> zawiera cały kod odpowiedzialny za Notatkę. W tak prostym
 przykładzie kod modelu oraz kontrolera należą do tej samej paczki <strong><code>package note</code></strong>.</p>
-
 <h3 id="model">Model</h3>
-
 <p>Kod modelu znajduje się w pliku <strong>/note/model.go</strong> :</p>
-
 <pre><code>package note
 
 import (
@@ -328,11 +343,8 @@ func destroy(id int) {
     pg.DB.Delete(Note{}, &quot;id = ?&quot;, id)
 }
 </code></pre>
-
 <h3 id="kontroler">Kontroler</h3>
-
 <p>Plik <strong>/note/controller.go</strong> zawiera kod kontrolera:</p>
-
 <pre><code>package note
 
 import (
@@ -382,15 +394,10 @@ func Destroy(c *iris.Context) {
     destroy(id)
 }
 </code></pre>
-
 <h2 id="paczka-tag">Paczka tag</h2>
-
 <p>W katalogu <strong>/tag</strong> znajduje się kod dotyczący Tagów.</p>
-
 <h3 id="model-1">Model</h3>
-
 <p>Zawartość pliku <strong>/tag/model.go</strong>:</p>
-
 <pre><code>package tag
 
 import (
@@ -415,11 +422,8 @@ func find(id int) Tag {
     return tag
 }
 </code></pre>
-
 <h3 id="kontroler-1">Kontroler</h3>
-
 <p>Plik <strong>/tag/controller.go</strong>:</p>
-
 <pre><code>package tag
 
 import (
@@ -449,15 +453,53 @@ func Show(c *iris.Context) {
     }
 }
 </code></pre>
-
 <h2 id="podsumowanie">Podsumowanie</h2>
-
 <p>Jak widać Iris sporo upraszcza, standardowe handlery z paczki net/http
 przyjmują dwa parametry, request oraz response. W Iris to jest tylko jeden
 wskaźnik na kontekst. Odczytanie parametru w url, konwersja do typu
 całkowitego, odczytanie formatu json z body zapytania POST, zwrócenie jsona
 z odpowiednim nagłówkiem statusu i wiele wiele innych standardowych operacji
 staje się dużo łatwiejszych.</p>
+  
+  <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-przyklad-json-api-z-uzyciem-iris-oraz-gorm%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-przyklad-json-api-z-uzyciem-iris-oraz-gorm%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-przyklad-json-api-z-uzyciem-iris-oraz-gorm%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-przyklad-json-api-z-uzyciem-iris-oraz-gorm%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-przyklad-json-api-z-uzyciem-iris-oraz-gorm%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-przyklad-json-api-z-uzyciem-iris-oraz-gorm%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
 <div class="prev-next-post pure-g">
@@ -499,8 +541,16 @@ staje się dużo łatwiejszych.</p>
 </div>
 </div>
 <script src="https://practical-coder.github.io/js/ui.js"></script>
+<script src="https://practical-coder.github.io/js/menus.js"></script>
 
 
+
+
+
+
+<script src="https://practical-coder.github.io/js/math-code.js"></script>
+  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
 
 
 </body>

@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.78.1" />
 
-  <title>Vim przywrócenie autouzupełniania &middot; Notatki</title>
+  <title>Go: odbiorca metody, przykłady &middot; Notatki</title>
 
     
 
@@ -196,7 +196,7 @@
 
 
 <div class="header">
-  <h1>Vim przywrócenie autouzupełniania</h1>
+  <h1>Go: odbiorca metody, przykłady</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -218,7 +218,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/vim">vim</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/go">go</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/golang">golang</a>&nbsp;&#47;
     
       <a class="post-taxonomy-tag" href="https://practical-coder.github.io/tags/pl">pl</a>
     
@@ -228,25 +230,67 @@
 
 </div>
 
-  <p>Po aktualizacji Vim przestało działać autouzupełnianie. Wymagane jest w takim
-przypadku przejście do katalogu wtyczki YouCompleteMe, oraz odpalenie kompilacji ze wsparciem dla języka C oraz Go.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~ $ cd  .vim/bundle/YouCompleteMe/
-YouCompleteMe <span style="color:#f92672">(</span>master<span style="color:#f92672">)</span> $ ./install.py --clang-completer --gocode-completer
-</code></pre></div>
+  <p>W Go po słowie kluczowym <strong><code>func</code></strong>, a przed nazwą metody, możemy określić jej odbiorcę.
+Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość.
+W metodach <strong><code>Len()</code></strong>, <strong><code>Cap()</code></strong>, <strong><code>IsEmpty()</code></strong> oraz <strong><code>Top()</code></strong> odbiorcą jest <strong><code>Stack</code></strong>. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu.
+Natomiast jeżeli metoda modyfikuje obiekt, wtedy odbiorca określany jest wskaźnikiem do obiektu.
+Tak się dzieje w metodach <strong><code>Push()</code></strong> i <strong><code>Pop()</code></strong>. Tam odbiorcą jest <strong><code>*Stack</code></strong>.</p>
+<pre><code>package stack
+
+import &quot;errors&quot;
+
+type Stack []interface{}
+
+func (stack Stack) Len() int {
+    return len(stack)
+}
+
+func (stack Stack) Cap() int {
+    return cap(stack)
+}
+
+func (stack Stack) IsEmpty() bool {
+    return len(stack) == 0
+}
+
+func (stack Stack) Top() (interface{}, error) {
+    if stack.IsEmpty() {
+        return nil, errors.New(&quot;Cannot Top() an empty stack&quot;)
+    } else {
+        return stack[len(stack)-1], nil
+    }
+}
+
+func (stack *Stack) Push(x interface{}) {
+    *stack = append(*stack, x)
+}
+
+func (stack *Stack) Pop() (interface{}, error) {
+    tempStack := *stack
+    if tempStack.IsEmpty() {
+        return nil, errors.New(&quot;Cannot Pop() an empty stack&quot;)
+    } else {
+        item := tempStack[len(tempStack)-1]
+        *stack = tempStack[:len(tempStack)-1]
+        return item, nil
+    }
+}
+</code></pre>
+
   
   <h4><i class="fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fvim-przywrocenie-autouzupelniania%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-odbiorca-metody-przyklady%2f" target="_blank" title="Share on Facebook"><i class="fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fpractical-coder.github.io%2fpost%2fvim-przywrocenie-autouzupelniania%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-odbiorca-metody-przyklady%2f&via=HorribleGeek" target="_blank" title="Tweet"><i class="fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fvim-przywrocenie-autouzupelniania%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-odbiorca-metody-przyklady%2f" target="_blank" title="Share on Google+"><i class="fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fvim-przywrocenie-autouzupelniania%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-odbiorca-metody-przyklady%2f" target="_blank" title="Post to Tumblr"><i class="fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fvim-przywrocenie-autouzupelniania%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-odbiorca-metody-przyklady%2f" target="_blank" title="Pin it"><i class="fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fvim-przywrocenie-autouzupelniania%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fpractical-coder.github.io%2fpost%2fgo-odbiorca-metody-przyklady%2f" target="_blank" title="Submit to Reddit"><i class="fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
 	</li>
 </ul>
 
@@ -278,13 +322,13 @@ YouCompleteMe <span style="color:#f92672">(</span>master<span style="color:#f926
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://practical-coder.github.io/post/testing-notes-with-curl/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/">Go: odbiorca metody, przykłady</a>
+      <a href="https://practical-coder.github.io/post/testing-notes-with-curl/">Testing notes with curl</a>
     </nav>
     
   </div>
@@ -294,13 +338,13 @@ YouCompleteMe <span style="color:#f92672">(</span>master<span style="color:#f926
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="https://practical-coder.github.io/post/osx-uslugi-nasluchujace/">Macos usługi nasłuchujące</a>
+      <a href="https://practical-coder.github.io/post/vim-przywrocenie-autouzupelniania/">Vim przywrócenie autouzupełniania</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="https://practical-coder.github.io/post/osx-uslugi-nasluchujace/"><i class="fa fa-chevron-right"></i></a>
+    <a href="https://practical-coder.github.io/post/vim-przywrocenie-autouzupelniania/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -321,9 +365,6 @@ YouCompleteMe <span style="color:#f92672">(</span>master<span style="color:#f926
 
 
 
-<script src="https://practical-coder.github.io/js/math-code.js"></script>
-  <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  
 
 
 </body>

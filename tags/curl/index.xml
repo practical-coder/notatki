@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Curl on Notatki</title>
+    <title>curl on Notatki</title>
     <link>https://practical-coder.github.io/tags/curl/</link>
-    <description>Recent content in Curl on Notatki</description>
+    <description>Recent content in curl on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sun, 19 Jun 2016 08:11:03 +0200</lastBuildDate>
-    
-	<atom:link href="https://practical-coder.github.io/tags/curl/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 19 Jun 2016 08:11:03 +0200</lastBuildDate><atom:link href="https://practical-coder.github.io/tags/curl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing notes with curl</title>
       <link>https://practical-coder.github.io/post/testing-notes-with-curl/</link>
@@ -19,7 +15,7 @@
       
       <guid>https://practical-coder.github.io/post/testing-notes-with-curl/</guid>
       <description>To test creating notes with api, use sample note.json in main directory and post it with curl:
-cat note.json | c -XPOST http://localhost:8181/notes -d @-  </description>
+cat note.json | c -XPOST http://localhost:8181/notes -d @- </description>
     </item>
     
   </channel>

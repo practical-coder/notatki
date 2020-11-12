@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bash on Notatki</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sun, 19 Jun 2016 18:57:32 +0200</lastBuildDate>
-    
-	<atom:link href="https://practical-coder.github.io/categories/bash/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 19 Jun 2016 18:57:32 +0200</lastBuildDate><atom:link href="https://practical-coder.github.io/categories/bash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Historia poleceń, czas wykonania komendy</title>
       <link>https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/</link>
@@ -19,9 +15,7 @@
       
       <guid>https://practical-coder.github.io/post/historia-polecen-czas-wykonania-komendy/</guid>
       <description>&lt;p&gt;Domyślnie pierwsza kolumna wpisu historii powłoki zawiera tylko id wykonanej komendy. Nie ma jednak informacji o czasie jej wykonania.
-Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową &lt;strong&gt;HISTTIMEFORMAT&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+Aby taką informację dodać, należy ustawić format czasu jaki powinien być wpisywany w zmienną środowiskową &lt;strong&gt;HISTTIMEFORMAT&lt;/strong&gt;:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -30,8 +24,7 @@ Aby taką informację dodać, należy ustawić format czasu jaki powinien być w
       <pubDate>Sun, 19 Jun 2016 18:55:16 +0200</pubDate>
       
       <guid>https://practical-coder.github.io/post/osx-uslugi-nasluchujace/</guid>
-      <description>&lt;p&gt;W systemie Macos polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;W systemie Macos polecenie &lt;strong&gt;&lt;code&gt;netstat&lt;/code&gt;&lt;/strong&gt; zachowuje się inaczej niż pod Linuxem. Do wypisania usług nasłuchujących na portach tcp lokalnej maszyny można użyć polecenia &lt;strong&gt;&lt;code&gt;lsof&lt;/code&gt;&lt;/strong&gt;. Przykładowo:&lt;/p&gt;</description>
     </item>
     
   </channel>

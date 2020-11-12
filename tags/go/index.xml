@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on Notatki</title>
+    <title>go on Notatki</title>
     <link>https://practical-coder.github.io/tags/go/</link>
-    <description>Recent content in Go on Notatki</description>
+    <description>Recent content in go on Notatki</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl-pl</language>
     <copyright>©2016 Jac</copyright>
-    <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate>
-    
-	<atom:link href="https://practical-coder.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 16 Jul 2016 22:35:19 +0200</lastBuildDate><atom:link href="https://practical-coder.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Remote API - poligon</title>
       <link>https://practical-coder.github.io/post/docker-remote-api-poligon/</link>
@@ -19,11 +15,9 @@
       
       <guid>https://practical-coder.github.io/post/docker-remote-api-poligon/</guid>
       <description>&lt;h2 id=&#34;połączenie-z-gniazdem-unixowym&#34;&gt;Połączenie z gniazdem unixowym&lt;/h2&gt;
-
 &lt;p&gt;Domyślnie usługa Docker zainstalowana na linuxie umożliwia komunikację z
 Docker Remote API używając gniazda &lt;code&gt;/var/run/docker.sock&lt;/code&gt;. Podobnie jest
-w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.
-&lt;/p&gt;</description>
+w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -33,21 +27,18 @@ w przypadku instalacji Docker dla Mac wykorzystującej xhyvie.
       
       <guid>https://practical-coder.github.io/post/go-przyklad-json-api-z-uzyciem-iris-oraz-gorm/</guid>
       <description>&lt;h2 id=&#34;organizacja-kodu&#34;&gt;Organizacja kodu&lt;/h2&gt;
-
 &lt;p&gt;Zbudujmy przykładowe API do tworzenia notatek i tagów. Dane składowane są w
 PostgreSQL, do uproszczenia wyciągania danych z bazy użyty zostanie GORM. Natomiast
 do ułatwienia komunikacji HTTP oraz serializacji do formatu JSON
-wykorzystany zostanie framework Iris.
-
-Struktura plików aplikacji:&lt;/p&gt;</description>
+wykorzystany zostanie framework Iris.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Go: odbiorca metody, przykłady</title>
-      <link>https://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/</link>
+      <link>https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/</link>
       <pubDate>Sun, 19 Jun 2016 09:03:31 +0200</pubDate>
       
-      <guid>https://practical-coder.github.io/post/go-odbiorca-metody-przyk%C5%82ady/</guid>
+      <guid>https://practical-coder.github.io/post/go-odbiorca-metody-przyklady/</guid>
       <description>W Go po słowie kluczowym func, a przed nazwą metody, możemy określić jej odbiorcę. Jeżeli obiekt nie będzie modyfikowany, odbiorcę metody określamy przez jego wartość. W metodach Len(), Cap(), IsEmpty() oraz Top() odbiorcą jest Stack. Potrzebują one informacji o aktualnym stanie obiektu tylko do odczytu. Natomiast jeżeli metoda modyfikuje obiekt, wtedy odbiorca określany jest wskaźnikiem do obiektu. Tak się dzieje w metodach Push() i Pop(). Tam odbiorcą jest *Stack.
 package stack import &amp;quot;errors&amp;quot; type Stack []interface{} func (stack Stack) Len() int { return len(stack) } func (stack Stack) Cap() int { return cap(stack) } func (stack Stack) IsEmpty() bool { return len(stack) == 0 } func (stack Stack) Top() (interface{}, error) { if stack.</description>
     </item>
